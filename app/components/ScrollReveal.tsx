@@ -1,16 +1,6 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
-import { type ReactNode } from "react";
-
-const defaultVariants: Variants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-  },
-};
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 type ScrollRevealProps = {
   children: ReactNode;
@@ -27,29 +17,44 @@ export default function ScrollReveal({
   direction = "up",
   once = true,
 }: ScrollRevealProps) {
-  const offsets = {
-    up: { y: 40, x: 0 },
-    down: { y: -40, x: 0 },
-    left: { x: 40, y: 0 },
-    right: { x: -40, y: 0 },
-  };
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
 
-  const offset = offsets[direction];
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          if (once) observer.disconnect();
+        } else if (!once) {
+          setVisible(false);
+        }
+      },
+      { rootMargin: "-80px" },
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [once]);
+
+  const directionClass = {
+    up: "scroll-reveal-up",
+    down: "scroll-reveal-down",
+    left: "scroll-reveal-left",
+    right: "scroll-reveal-right",
+  }[direction];
 
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, ...offset }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once, margin: "-80px" }}
-      transition={{
-        duration: 0.7,
-        delay,
-        ease: [0.22, 1, 0.36, 1],
-      }}
+    <div
+      ref={ref}
+      data-delay={delay > 0 ? String(delay) : undefined}
+      className={`scroll-reveal ${directionClass} ${visible ? "scroll-reveal-visible" : ""} ${className}`}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -62,21 +67,35 @@ export function StaggerContainer({
   className?: string;
   stagger?: number;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "-60px" },
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <motion.div
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-60px" }}
-      variants={{
-        hidden: {},
-        visible: {
-          transition: { staggerChildren: stagger },
-        },
-      }}
+    <div
+      ref={ref}
+      data-stagger={String(stagger)}
+      className={`stagger-container ${visible ? "stagger-visible" : ""} ${className}`}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -87,9 +106,5 @@ export function StaggerItem({
   children: ReactNode;
   className?: string;
 }) {
-  return (
-    <motion.div className={`h-full ${className}`} variants={defaultVariants}>
-      {children}
-    </motion.div>
-  );
+  return <div className={`stagger-item h-full ${className}`}>{children}</div>;
 }

@@ -73,21 +73,27 @@ function ValueCard({
 }
 
 export default function About({ isStandalone = false }: { isStandalone?: boolean }) {
+  const HeadingTag = isStandalone ? "h1" : "h2";
+
   return (
     <section
       id="about"
+      aria-labelledby="about-heading"
       className={`relative scroll-mt-24 bg-white px-6 lg:px-8 ${isStandalone ? "pt-28 pb-24" : "py-24"}`}
     >
       <div className="mx-auto max-w-7xl">
-        <ScrollReveal className="mb-16 text-center">
-          <motion.span className="mb-4 inline-block rounded-full bg-dyota-navy/10 px-4 py-1.5 text-sm font-semibold tracking-wider text-dyota-navy uppercase">
+        <div className="mb-16 text-center">
+          <span className="mb-4 inline-block rounded-full bg-dyota-navy/10 px-4 py-1.5 text-sm font-semibold tracking-wider text-dyota-navy uppercase">
             About
-          </motion.span>
-          <h2 className="mb-4 text-4xl font-bold text-dyota-navy md:text-5xl">
+          </span>
+          <HeadingTag
+            id="about-heading"
+            className="mb-4 text-4xl font-bold text-dyota-navy md:text-5xl"
+          >
             {aboutContent.title}
-          </h2>
+          </HeadingTag>
           <div className="section-divider mx-auto mb-8 w-24" />
-        </ScrollReveal>
+        </div>
 
         <ScrollReveal delay={0.1}>
           <div className="relative mb-16 overflow-hidden rounded-3xl bg-gradient-to-br from-dyota-navy/5 to-dyota-orange/5 p-8 md:p-12">
@@ -115,29 +121,25 @@ export default function About({ isStandalone = false }: { isStandalone?: boolean
         </StaggerContainer>
 
         <ScrollReveal className="mt-20" delay={0.2}>
-          <h3 className="mb-8 text-center text-2xl font-bold text-dyota-navy">
+          <h2 className="mb-8 text-center text-2xl font-bold text-dyota-navy">
             What Sets Us Apart
-          </h3>
+          </h2>
           <div className="grid grid-cols-2 items-stretch gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            {coreValues.map((value, i) => (
-              <motion.div
+            {coreValues.map((value) => (
+              <div
                 key={value.title}
-                className="flex min-h-[140px] flex-col items-center justify-center rounded-2xl border border-dyota-navy/10 bg-white p-6 text-center shadow-sm"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                whileHover={{ y: -4, borderColor: "rgba(242,101,34,0.3)" }}
+                className="flex min-h-[140px] flex-col items-center justify-center rounded-2xl border border-dyota-navy/10 bg-white p-6 text-center shadow-sm transition-transform hover:-translate-y-1 hover:border-dyota-orange/30"
               >
-                <motion.span
-                  className="mb-3 text-3xl"
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
-                >
+                <span className="mb-3 text-3xl" aria-hidden>
                   {valueIcons[value.icon]}
-                </motion.span>
-                <p className="text-sm font-semibold text-dyota-navy">{value.title}</p>
-              </motion.div>
+                </span>
+                <h5 className="text-sm font-semibold text-dyota-navy">
+                  {value.title}
+                </h5>
+                <h6 className="mt-2 text-xs font-medium text-foreground/60">
+                  {value.subtitle}
+                </h6>
+              </div>
             ))}
           </div>
         </ScrollReveal>

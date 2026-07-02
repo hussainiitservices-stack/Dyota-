@@ -8,6 +8,7 @@ import { contactInfo } from "../lib/content";
 export default function Contact({ isStandalone = false }: { isStandalone?: boolean }) {
   const [submitted, setSubmitted] = useState(false);
   const [focused, setFocused] = useState<string | null>(null);
+  const HeadingTag = isStandalone ? "h1" : "h2";
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -25,6 +26,7 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
   return (
     <section
       id="contact"
+      aria-labelledby="contact-heading"
       className={`relative scroll-mt-24 overflow-hidden bg-dyota-navy px-6 lg:px-8 ${
         isStandalone ? "pt-28 pb-24" : "py-24"
       }`}
@@ -54,9 +56,12 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
           >
             Contact
           </motion.span>
-          <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
+          <HeadingTag
+            id="contact-heading"
+            className="mb-4 text-4xl font-bold text-white md:text-5xl"
+          >
             Get In Touch
-          </h2>
+          </HeadingTag>
           <div className="section-divider mx-auto w-24" />
         </ScrollReveal>
 

@@ -83,11 +83,31 @@ With 20+ years of experience, we specialize in thermography on LV switchgear, sw
 };
 
 export const coreValues = [
-  { title: "Harmonics & Power Quality", icon: "shield" },
-  { title: "Reactive Energy Management", icon: "gear" },
-  { title: "Delta T Energy Efficiency", icon: "leaf" },
-  { title: "Thermal & Thermography Audit", icon: "target" },
-  { title: "Optimized Performance", icon: "chart" },
+  {
+    title: "Harmonics & Power Quality",
+    subtitle: "Audit and mitigation solutions",
+    icon: "shield",
+  },
+  {
+    title: "Reactive Energy Management",
+    subtitle: "Capacitor banks and APFC panels",
+    icon: "gear",
+  },
+  {
+    title: "Delta T Energy Efficiency",
+    subtitle: "Smart HVAC control systems",
+    icon: "leaf",
+  },
+  {
+    title: "Thermal & Thermography Audit",
+    subtitle: "LV switchgear inspection",
+    icon: "target",
+  },
+  {
+    title: "Optimized Performance",
+    subtitle: "Load balancing and compliance",
+    icon: "chart",
+  },
 ] as const;
 
 export const servicePillars = [
@@ -335,4 +355,5 @@ export const contactInfo = {
   phone: "+971 55-366-5458",
   email: "info@dyotaes.com",
   website: "www.dyotaes.com",
+  linkedin: "https://www.linkedin.com/company/dyotaes/",
 };

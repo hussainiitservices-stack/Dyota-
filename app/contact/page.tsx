@@ -1,12 +1,39 @@
-import type { Metadata } from "next";
 import Contact from "../components/Contact";
+import JsonLd from "../components/JsonLd";
+import {
+  breadcrumbSchema,
+  buildSchemaGraph,
+  createPageMetadata,
+  webPageSchema,
+} from "../lib/seo";
 
-export const metadata: Metadata = {
+const CONTACT_DESCRIPTION =
+  "Contact Dyota Engineered Solutions in Dubai, UAE. Call +971 55-366-5458 or email info@dyotaes.com for power quality and electrical engineering services.";
+
+export const metadata = createPageMetadata({
   title: "Contact",
-  description:
-    "Contact Dyota Engineered Solutions in Dubai, UAE. Call +971 55-366-5458 or email info@dyotaes.com for power quality and electrical engineering services.",
-};
+  description: CONTACT_DESCRIPTION,
+  path: "/contact",
+});
 
 export default function ContactPage() {
-  return <Contact isStandalone />;
+  return (
+    <>
+      <JsonLd
+        data={buildSchemaGraph([
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Contact", path: "/contact" },
+          ]),
+          webPageSchema({
+            path: "/contact",
+            name: "Contact Dyota Engineered Solutions",
+            description: CONTACT_DESCRIPTION,
+            type: "ContactPage",
+          }),
+        ])}
+      />
+      <Contact isStandalone />
+    </>
+  );
 }

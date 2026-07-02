@@ -41,12 +41,17 @@ function SectionHeader({
   title,
   subtitle,
   badgeColor = "orange",
+  headingLevel = "h2",
+  headingId,
 }: {
   badge: string;
   title: React.ReactNode;
   subtitle?: string;
   badgeColor?: "orange" | "navy" | "green";
+  headingLevel?: "h1" | "h2";
+  headingId?: string;
 }) {
+  const HeadingTag = headingLevel;
   const badgeClasses = {
     orange: "bg-dyota-orange/10 text-dyota-orange",
     navy: "bg-dyota-navy/10 text-dyota-navy",
@@ -60,7 +65,12 @@ function SectionHeader({
       >
         {badge}
       </span>
-      <h2 className="mb-4 text-3xl font-bold text-dyota-navy md:text-4xl">{title}</h2>
+      <HeadingTag
+        id={headingId}
+        className="mb-4 text-3xl font-bold text-dyota-navy md:text-4xl"
+      >
+        {title}
+      </HeadingTag>
       {subtitle && (
         <p className="mx-auto max-w-2xl text-lg text-foreground/70">{subtitle}</p>
       )}
@@ -75,6 +85,7 @@ export default function Services({ isStandalone = false }: { isStandalone?: bool
       {/* Three Pillars */}
       <section
         id="services"
+        aria-labelledby="services-heading"
         className={`relative scroll-mt-24 overflow-hidden bg-gradient-to-b from-white to-dyota-navy/5 px-6 lg:px-8 ${
           isStandalone ? "pt-28 pb-24" : "py-24"
         }`}
@@ -84,6 +95,8 @@ export default function Services({ isStandalone = false }: { isStandalone?: bool
             badge="Our Solutions"
             title="Three Pillars of Excellence"
             subtitle="Comprehensive engineering services across electrical systems, HVAC, and power quality."
+            headingLevel={isStandalone ? "h1" : "h2"}
+            headingId="services-heading"
           />
 
           <StaggerContainer className="grid items-stretch gap-8 lg:grid-cols-3" stagger={0.15}>
@@ -130,7 +143,7 @@ export default function Services({ isStandalone = false }: { isStandalone?: bool
                           className="flex items-center gap-2 text-sm text-foreground/75"
                         >
                           <span className="h-1 w-1 shrink-0 rounded-full bg-dyota-orange" />
-                          {s}
+                          <h6 className="font-normal">{s}</h6>
                         </li>
                       ))}
                     </ul>
@@ -239,8 +252,8 @@ export default function Services({ isStandalone = false }: { isStandalone?: bool
                   >
                     {step.step}
                   </motion.div>
-                  <h4 className="mb-2 font-semibold text-dyota-navy">{step.title}</h4>
-                  <p className="text-sm text-foreground/65">{step.description}</p>
+                  <h5 className="mb-2 font-semibold text-dyota-navy">{step.title}</h5>
+                  <h6 className="text-sm text-foreground/65">{step.description}</h6>
                   {i < engineeringApproach.length - 1 && (
                     <motion.div
                       className="absolute top-8 hidden h-0.5 bg-dyota-orange/40 lg:block"
@@ -332,12 +345,12 @@ export default function Services({ isStandalone = false }: { isStandalone?: bool
                     accentClass={`bg-gradient-to-r ${product.accent === "navy" ? "from-dyota-navy to-dyota-navy-light" : product.accent === "green" ? "from-dyota-green to-dyota-green" : product.accent === "orange" ? "from-dyota-orange to-dyota-orange-bright" : "from-dyota-purple to-dyota-purple"}`}
                     className="p-4 shadow-sm"
                   >
-                    <h4 className={`font-bold ${accentText[product.accent]}`}>
+                    <h5 className={`font-bold ${accentText[product.accent]}`}>
                       {product.title}
-                    </h4>
-                    <p className="mt-1 text-sm text-foreground/70">
+                    </h5>
+                    <h6 className="mt-1 text-sm text-foreground/70">
                       {product.description}
-                    </p>
+                    </h6>
                   </AnimatedCard>
                 ))}
               </div>
@@ -475,8 +488,8 @@ export default function Services({ isStandalone = false }: { isStandalone?: bool
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.08 }}
                     >
-                      <h4 className="font-semibold text-dyota-navy">{item.title}</h4>
-                      <p className="mt-1 text-xs text-foreground/65">{item.description}</p>
+                      <h5 className="font-semibold text-dyota-navy">{item.title}</h5>
+                      <h6 className="mt-1 text-xs text-foreground/65">{item.description}</h6>
                     </motion.div>
                   ))}
                 </div>
