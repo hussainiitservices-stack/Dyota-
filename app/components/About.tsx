@@ -44,7 +44,7 @@ function ValueCard({
         >
           {title[0]}
         </motion.div>
-        <h3 className="text-xl font-bold text-dyota-navy">{title}</h3>
+        <h4 className="text-xl font-bold text-dyota-navy">{title}</h4>
       </div>
 
       <div className="flex flex-1 flex-col">

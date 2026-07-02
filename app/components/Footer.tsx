@@ -108,6 +108,7 @@ export default function Footer() {
             <Image
               src="/logo.png"
               alt="Dyota Engineered Solutions"
+              title="Dyota Engineered Solutions — Designing Today, Powering Tomorrow"
               width={180}
               height={72}
               className="mb-5 h-12 w-auto"
@@ -149,9 +150,9 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            <h5 className="mb-5 text-sm font-semibold tracking-wider text-dyota-orange uppercase">
+            <h4 className="mb-5 text-sm font-semibold tracking-wider text-dyota-orange uppercase">
               Quick Links
-            </h5>
+            </h4>
             <ul className="space-y-2.5">
               {footerLinks.map((link) => (
                 <li key={link.href}>
@@ -173,9 +174,9 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <h5 className="mb-5 text-sm font-semibold tracking-wider text-dyota-orange uppercase">
+            <h4 className="mb-5 text-sm font-semibold tracking-wider text-dyota-orange uppercase">
               Contact
-            </h5>
+            </h4>
             <ul className="space-y-4">
               {contactItems.map((item) => (
                 <li key={item.label} className="flex items-start gap-3">

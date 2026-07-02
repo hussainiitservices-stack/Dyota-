@@ -72,7 +72,9 @@ function SectionHeader({
         {title}
       </HeadingTag>
       {subtitle && (
-        <p className="mx-auto max-w-2xl text-lg text-foreground/70">{subtitle}</p>
+        <h4 className="mx-auto max-w-2xl text-lg font-normal text-foreground/70">
+          {subtitle}
+        </h4>
       )}
       <div className="section-divider mx-auto mt-6 w-24" />
     </ScrollReveal>
@@ -114,6 +116,7 @@ export default function Services({ isStandalone = false }: { isStandalone?: bool
                     <Image
                       src={pillar.image}
                       alt={pillar.title}
+                      title={pillar.title}
                       fill
                       className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 1024px) 100vw, 33vw"
@@ -181,6 +184,7 @@ export default function Services({ isStandalone = false }: { isStandalone?: bool
               <Image
                 src={siteImages.electricalHero}
                 alt="Electrical engineering and power system studies in UAE"
+                title="Electrical engineering and power system studies in UAE"
                 fill
                 className="object-cover object-center"
                 sizes="(max-width: 1280px) 100vw, 1280px"
@@ -209,11 +213,11 @@ export default function Services({ isStandalone = false }: { isStandalone?: bool
                   accentClass={`bg-gradient-to-r ${service.accent === "navy" ? "from-dyota-navy to-dyota-navy-light" : "from-dyota-orange to-dyota-orange-bright"}`}
                   className="p-6 shadow-sm"
                 >
-                  <div
+                  <h4
                     className={`mb-4 inline-flex rounded-lg px-3 py-1 text-xs font-bold uppercase ${accentStyles[service.accent]}`}
                   >
                     {service.title}
-                  </div>
+                  </h4>
                   <p className="mb-4 text-sm text-foreground/70">{service.description}</p>
                   <ul className="mt-auto space-y-2">
                     {service.highlights.map((h) => (
@@ -233,9 +237,9 @@ export default function Services({ isStandalone = false }: { isStandalone?: bool
 
           {/* Engineering Approach */}
           <ScrollReveal className="mt-20">
-            <h3 className="mb-10 text-center text-2xl font-bold text-dyota-navy">
+            <h4 className="mb-10 text-center text-2xl font-bold text-dyota-navy">
               Our Engineering Approach
-            </h3>
+            </h4>
             <div className="relative flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
               {engineeringApproach.map((step, i) => (
                 <motion.div
@@ -276,9 +280,9 @@ export default function Services({ isStandalone = false }: { isStandalone?: bool
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h3 className="mb-8 text-center text-xl font-bold text-white">
+            <h4 className="mb-8 text-center text-xl font-bold text-white">
               Benefits To You
-            </h3>
+            </h4>
             <div className="grid grid-cols-2 gap-6 md:grid-cols-5">
               {clientBenefits.map((benefit, i) => (
                 <motion.div
@@ -311,7 +315,8 @@ export default function Services({ isStandalone = false }: { isStandalone?: bool
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-xl">
                 <Image
                   src={siteImages.powerQuality}
-                  alt="Power Quality Solutions"
+                  alt="Power quality and harmonic mitigation solutions in UAE"
+                  title="Power quality and harmonic mitigation solutions in UAE"
                   fill
                   className="object-cover object-center"
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -407,7 +412,8 @@ export default function Services({ isStandalone = false }: { isStandalone?: bool
               <div className="relative aspect-video overflow-hidden rounded-2xl shadow-lg">
                 <Image
                   src={siteImages.hvac}
-                  alt="HVAC Systems"
+                  alt="Delta T HVAC control and energy efficiency systems in UAE"
+                  title="Delta T HVAC control and energy efficiency systems in UAE"
                   fill
                   className="object-cover object-center"
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -427,9 +433,9 @@ export default function Services({ isStandalone = false }: { isStandalone?: bool
 
             <ScrollReveal delay={0.15}>
               <div className="rounded-2xl border border-dyota-orange/20 bg-gradient-to-br from-dyota-orange/5 to-dyota-green/5 p-8">
-                <h3 className="mb-3 text-xl font-bold text-dyota-navy">
+                <h4 className="mb-3 text-xl font-bold text-dyota-navy">
                   {hvacSolutions.deltaT.title}
-                </h3>
+                </h4>
                 <p className="mb-6 text-sm leading-relaxed text-foreground/75">
                   {hvacSolutions.deltaT.description}
                 </p>

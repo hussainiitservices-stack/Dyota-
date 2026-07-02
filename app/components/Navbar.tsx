@@ -50,6 +50,7 @@ export default function Navbar() {
           <Image
             src="/logo-header.png"
             alt="Dyota Engineered Solutions"
+            title="Dyota Engineered Solutions — Home"
             width={56}
             height={56}
             className="h-11 w-11 rounded-full object-contain drop-shadow-md sm:h-12 sm:w-12"

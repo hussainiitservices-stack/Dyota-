@@ -69,6 +69,7 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
           {/* Contact info */}
           <ScrollReveal direction="left">
             <div className="space-y-8">
+              <h4 className="text-xl font-bold text-white">Contact Information</h4>
               {[
                 {
                   label: "Location",
@@ -182,9 +183,9 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
             >
-              <h3 className="mb-6 text-2xl font-bold text-dyota-navy">
+              <h4 className="mb-6 text-2xl font-bold text-dyota-navy">
                 Write To Us
-              </h3>
+              </h4>
 
               <div className="grid gap-5 sm:grid-cols-2">
                 {fields.map((field) => (

@@ -7,18 +7,31 @@ export const SITE_BRAND = "Dyota ES";
 export const DEFAULT_OG_IMAGE = "/images/hero-bg.jpg";
 export const GOOGLE_SITE_VERIFICATION = "googlee3d9b88b6cf785ea";
 
-/** ≤60 characters for search result titles */
+/** 60–65 characters for search result titles */
 export const DEFAULT_TITLE =
-  "Dyota ES | Power Quality & Electrical Engineering UAE";
+  "Dyota ES | Power Quality & Electrical Engineering Services UAE";
 
-/** ≤160 characters for meta descriptions */
+/** 160–165 characters for meta descriptions */
 export const DEFAULT_DESCRIPTION =
-  "Power quality audits, harmonic filters, ETAP simulation, capacitor banks and Delta T HVAC control for industrial facilities in Dubai and the UAE.";
+  "Power quality audits, harmonic filters, ETAP simulation, capacitor banks and Delta T HVAC control for Dubai and UAE industrial facilities. Trusted for 20+ years.";
+
+export const CONTACT_PAGE_TITLE =
+  "Contact Us | Dyota Engineered Solution LLC — Dubai, UAE Experts";
+
+export const CONTACT_PAGE_DESCRIPTION =
+  "Contact Dyota Engineered Solution LLC in Dubai, UAE for power quality, harmonics, ETAP simulation, HVAC and electrical engineering services. Call +971 55-366-5458.";
+
+export const SERVICES_PAGE_TITLE =
+  "Electrical Engineering Services in UAE | Dyota Engineered Solution LLC";
+
+export const SERVICES_PAGE_DESCRIPTION =
+  "UAE electrical engineering: ETAP simulation, power quality audits, harmonic filters, capacitor banks, APFC panels and Delta T HVAC control from Dyota Solution LLC.";
 
 type PageMetadataOptions = {
   title: string;
   description: string;
   path: string;
+  absoluteTitle?: string;
   keywords?: readonly string[];
   ogImage?: string;
 };
@@ -32,21 +45,22 @@ export function createPageMetadata({
   title,
   description,
   path,
+  absoluteTitle,
   keywords,
   ogImage = DEFAULT_OG_IMAGE,
 }: PageMetadataOptions): Metadata {
   const url = `${SITE_URL}${path}`;
-  const absoluteTitle = pageTitle(title, path);
+  const resolvedTitle = absoluteTitle ?? pageTitle(title, path);
 
   return {
-    title: { absolute: absoluteTitle },
+    title: { absolute: resolvedTitle },
     description,
     keywords: keywords ? [...keywords] : [...seoKeywords],
     alternates: {
       canonical: url,
     },
     openGraph: {
-      title: absoluteTitle,
+      title: resolvedTitle,
       description,
       url,
       siteName: SITE_NAME,
@@ -63,7 +77,7 @@ export function createPageMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: absoluteTitle,
+      title: resolvedTitle,
       description,
       images: [ogImage],
     },

@@ -1,18 +1,18 @@
 import Contact from "../components/Contact";
 import JsonLd from "../components/JsonLd";
 import {
+  CONTACT_PAGE_DESCRIPTION,
+  CONTACT_PAGE_TITLE,
   breadcrumbSchema,
   buildSchemaGraph,
   createPageMetadata,
   webPageSchema,
 } from "../lib/seo";
 
-const CONTACT_DESCRIPTION =
-  "Contact Dyota Engineered Solutions in Dubai, UAE. Call +971 55-366-5458 or email info@dyotaes.com for power quality and electrical engineering services.";
-
 export const metadata = createPageMetadata({
-  title: "Contact",
-  description: CONTACT_DESCRIPTION,
+  title: "Contact Us",
+  absoluteTitle: CONTACT_PAGE_TITLE,
+  description: CONTACT_PAGE_DESCRIPTION,
   path: "/contact",
 });
 
@@ -27,8 +27,8 @@ export default function ContactPage() {
           ]),
           webPageSchema({
             path: "/contact",
-            name: "Contact Dyota Engineered Solutions",
-            description: CONTACT_DESCRIPTION,
+            name: CONTACT_PAGE_TITLE,
+            description: CONTACT_PAGE_DESCRIPTION,
             type: "ContactPage",
           }),
         ])}

@@ -16,6 +16,7 @@ export default function Hero() {
         <Image
           src={siteImages.heroBackground}
           alt="Electrical substation and power engineering background"
+          title="Electrical substation and power engineering background — Dyota ES UAE"
           fill
           className="scale-105 object-cover object-center"
           sizes="100vw"

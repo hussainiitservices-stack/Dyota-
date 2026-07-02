@@ -1,6 +1,8 @@
 import Services from "../components/Services";
 import JsonLd from "../components/JsonLd";
 import {
+  SERVICES_PAGE_DESCRIPTION,
+  SERVICES_PAGE_TITLE,
   breadcrumbSchema,
   buildSchemaGraph,
   createPageMetadata,
@@ -8,12 +10,10 @@ import {
   webPageSchema,
 } from "../lib/seo";
 
-const SERVICES_DESCRIPTION =
-  "ETAP simulation, electrical system studies, power quality solutions, harmonic filters, capacitor banks and Delta T HVAC control services across the UAE.";
-
 export const metadata = createPageMetadata({
   title: "Services",
-  description: SERVICES_DESCRIPTION,
+  absoluteTitle: SERVICES_PAGE_TITLE,
+  description: SERVICES_PAGE_DESCRIPTION,
   path: "/services",
 });
 
@@ -28,8 +28,8 @@ export default function ServicesPage() {
           ]),
           webPageSchema({
             path: "/services",
-            name: "Engineering Services",
-            description: SERVICES_DESCRIPTION,
+            name: SERVICES_PAGE_TITLE,
+            description: SERVICES_PAGE_DESCRIPTION,
             type: "CollectionPage",
           }),
           servicesSchema(),
