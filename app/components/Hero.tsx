@@ -67,13 +67,13 @@ export default function Hero() {
 
         <div className="hero-animate hero-animate-delay-5 flex flex-col gap-4 sm:flex-row">
           <a
-            href="#services"
+            href="/services"
             className="rounded-full bg-dyota-orange/90 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-dyota-orange/30 backdrop-blur-sm transition-transform hover:scale-105"
           >
             Explore Solutions
           </a>
           <a
-            href="#contact"
+            href="/contact"
             className="rounded-full border border-white/40 bg-white/10 px-8 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition-colors hover:border-dyota-orange hover:bg-white/15"
           >
             Get In Touch
