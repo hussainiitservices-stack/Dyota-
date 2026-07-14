@@ -5,10 +5,10 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Dyota Engineered Solutions",
     short_name: "Dyota ES",
     description:
-      "Power quality, harmonics mitigation, and electrical engineering consultancy in Dubai, UAE.",
+      "Power quality solutions, harmonic filters, and UAE-manufactured capacitors and reactors in Dubai, UAE.",
     start_url: "/",
     display: "standalone",
-    background_color: "#001A4D",
+    background_color: "#ffffff",
     theme_color: "#002D88",
     icons: [
       {

@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import ScrollReveal, { StaggerContainer, StaggerItem } from "./ScrollReveal";
 import AnimatedCard from "./AnimatedCard";
 import { aboutContent, coreValues } from "../lib/content";
@@ -38,30 +37,25 @@ function ValueCard({
       className="p-8"
     >
       <div className="mb-4 flex items-center gap-3">
-        <motion.div
+        <div
           className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${accentMap[variant]} text-lg font-bold text-white`}
-          whileHover={{ rotate: [0, -10, 10, 0] }}
         >
           {title[0]}
-        </motion.div>
+        </div>
         <h4 className="text-xl font-bold text-dyota-navy">{title}</h4>
       </div>
 
       <div className="flex flex-1 flex-col">
         {Array.isArray(content) ? (
           <ul className="flex-1 space-y-2">
-            {content.map((item, i) => (
-              <motion.li
+            {content.map((item) => (
+              <li
                 key={item}
-                className="flex items-center gap-2 text-foreground/80"
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
+                className="flex items-start gap-2 text-foreground/80"
               >
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-dyota-orange" />
-                {item}
-              </motion.li>
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-dyota-orange" />
+                <span className="text-sm leading-relaxed">{item}</span>
+              </li>
             ))}
           </ul>
         ) : (
@@ -79,7 +73,7 @@ export default function About({ isStandalone = false }: { isStandalone?: boolean
     <section
       id="about"
       aria-labelledby="about-heading"
-      className={`relative scroll-mt-24 bg-white px-6 lg:px-8 ${isStandalone ? "pt-28 pb-24" : "py-24"}`}
+      className={`section-gradient scroll-mt-24 px-6 lg:px-8 ${isStandalone ? "pt-28 pb-24" : "py-24"}`}
     >
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 text-center">
@@ -96,16 +90,31 @@ export default function About({ isStandalone = false }: { isStandalone?: boolean
         </div>
 
         <ScrollReveal delay={0.1}>
-          <div className="relative mb-16 overflow-hidden rounded-3xl bg-gradient-to-br from-dyota-navy/5 to-dyota-orange/5 p-8 md:p-12">
-            <motion.div
-              className="absolute top-0 right-0 h-64 w-64 rounded-full bg-dyota-orange/10 blur-3xl"
-              animate={{ x: [0, 20, 0], y: [0, -20, 0] }}
-              transition={{ duration: 8, repeat: Infinity }}
-            />
-            <p className="relative text-lg leading-relaxed text-foreground/85 whitespace-pre-line">
+          <div className="relative mb-10 overflow-hidden rounded-3xl border border-dyota-navy/10 bg-white p-8 shadow-sm md:p-12">
+            <p className="mb-4 text-lg font-semibold leading-relaxed text-dyota-navy">
+              {aboutContent.intro}
+            </p>
+            <p className="text-base leading-relaxed text-foreground/85">
               {aboutContent.description}
             </p>
           </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.15}>
+          <h4 className="mb-6 text-center text-xl font-bold text-dyota-navy">
+            Our Expertise
+          </h4>
+          <ul className="mb-16 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {aboutContent.specialties.map((item) => (
+              <li
+                key={item}
+                className="flex items-start gap-3 rounded-2xl border border-dyota-navy/10 bg-white px-5 py-4 shadow-sm"
+              >
+                <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-dyota-orange" />
+                <span className="text-sm font-medium text-foreground/85">{item}</span>
+              </li>
+            ))}
+          </ul>
         </ScrollReveal>
 
         <StaggerContainer className="grid items-stretch gap-8 md:grid-cols-3" stagger={0.15}>

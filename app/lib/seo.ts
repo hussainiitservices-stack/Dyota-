@@ -9,23 +9,29 @@ export const GOOGLE_SITE_VERIFICATION = "googlee3d9b88b6cf785ea";
 
 /** 60–65 characters for search result titles */
 export const DEFAULT_TITLE =
-  "Dyota ES | Power Quality & Electrical Engineering Services UAE";
+  "Dyota ES | Power Quality & Harmonic Filter Solutions UAE";
 
 /** 160–165 characters for meta descriptions */
 export const DEFAULT_DESCRIPTION =
-  "Power quality audits, harmonic filters, ETAP simulation, capacitor banks and Delta T HVAC control for Dubai and UAE industrial facilities. Trusted for 20+ years.";
+  "UAE-manufactured capacitors, reactors, harmonic filters and APFC panels. Harmonics study, power quality audits, thermal testing and Delta-T HVAC control across Dubai and UAE.";
 
 export const CONTACT_PAGE_TITLE =
   "Contact Us | Dyota Engineered Solution LLC — Dubai, UAE Experts";
 
 export const CONTACT_PAGE_DESCRIPTION =
-  "Contact Dyota Engineered Solution LLC in Dubai, UAE for power quality, harmonics, ETAP simulation, HVAC and electrical engineering services. Call +971 55-366-5458.";
+  "Contact Dyota Engineered Solution LLC in Dubai, UAE for power quality solutions, harmonics audits, harmonic filters, thermal testing and Delta-T HVAC control. Call +971 55-366-5458.";
+
+export const SOLUTIONS_PAGE_TITLE =
+  "Power Quality Solutions UAE | Dyota Engineered Solution LLC";
+
+export const SOLUTIONS_PAGE_DESCRIPTION =
+  "UAE-manufactured capacitors, reactors, auto-PFC controllers, harmonic filters, capacitor banks, compact APFC panels and hybrid systems from Dyota Engineered Solution LLC in Dubai.";
 
 export const SERVICES_PAGE_TITLE =
   "Electrical Engineering Services in UAE | Dyota Engineered Solution LLC";
 
 export const SERVICES_PAGE_DESCRIPTION =
-  "UAE electrical engineering: ETAP simulation, power quality audits, harmonic filters, capacitor banks, APFC panels and Delta T HVAC control from Dyota Solution LLC.";
+  "Thermal testing, harmonics audits, power quality studies, thermography, reactive energy management and network troubleshooting services from Dyota Engineered Solution LLC in UAE.";
 
 type PageMetadataOptions = {
   title: string;
@@ -191,7 +197,7 @@ export function servicesSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    serviceType: "Electrical Engineering & Power Quality",
+    serviceType: "Power Quality & Electrical Network Services",
     provider: { "@id": `${SITE_URL}/#organization` },
     areaServed: {
       "@type": "Country",
@@ -205,21 +211,21 @@ export function servicesSchema() {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Electrical System Studies & ETAP Simulation",
+            name: "Thermal Testing & Network Diagnostics",
           },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Power Quality & Harmonics Solutions",
+            name: "Harmonics & Power Quality Audits",
           },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Delta T HVAC Control & Energy Efficiency",
+            name: "Thermography & LV Switchgear Inspection",
           },
         },
       ],

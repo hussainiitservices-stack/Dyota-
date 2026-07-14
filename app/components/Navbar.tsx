@@ -34,9 +34,7 @@ export default function Navbar() {
   return (
     <header
       className={`nav-header fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-dyota-navy/95 shadow-lg shadow-dyota-navy/20 backdrop-blur-md"
-          : "glass-nav"
+        scrolled ? "glass-nav-scrolled" : "glass-nav"
       }`}
     >
       <nav
@@ -45,7 +43,7 @@ export default function Navbar() {
       >
         <Link
           href="/"
-          className="flex items-center gap-2 transition-transform hover:scale-[1.02] active:scale-[0.98]"
+          className="flex items-center gap-2 rounded-full bg-white/80 px-2 py-1 transition-transform hover:scale-[1.02] active:scale-[0.98]"
         >
           <Image
             src="/logo-header.png"
@@ -53,7 +51,7 @@ export default function Navbar() {
             title="Dyota Engineered Solutions — Home"
             width={56}
             height={56}
-            className="h-11 w-11 rounded-full object-contain drop-shadow-md sm:h-12 sm:w-12"
+            className="h-11 w-11 rounded-full object-contain sm:h-12 sm:w-12"
             priority
           />
         </Link>
@@ -66,7 +64,7 @@ export default function Navbar() {
                 className={`group relative text-sm font-medium tracking-wider uppercase transition-colors ${
                   isActive(link.href)
                     ? "text-dyota-orange"
-                    : "text-white/90 hover:text-dyota-orange"
+                    : "text-dyota-navy/80 hover:text-dyota-orange"
                 }`}
               >
                 {link.label}
@@ -82,7 +80,7 @@ export default function Navbar() {
 
         <Link
           href="/contact"
-          className="nav-cta hidden rounded-full glass-btn-orange px-6 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-105 active:scale-95 md:block"
+          className="nav-cta hidden rounded-full bg-dyota-orange px-6 py-2.5 text-sm font-semibold text-white shadow-md shadow-dyota-orange/25 transition-transform hover:scale-105 active:scale-95 md:block"
         >
           Get In Touch
         </Link>
@@ -95,17 +93,17 @@ export default function Navbar() {
           aria-label="Toggle menu"
         >
           <span
-            className={`mobile-menu-bar block h-0.5 w-6 bg-white transition-transform duration-300 ${
+            className={`mobile-menu-bar block h-0.5 w-6 bg-dyota-navy transition-transform duration-300 ${
               mobileOpen ? "translate-y-2 rotate-45" : ""
             }`}
           />
           <span
-            className={`mobile-menu-bar block h-0.5 w-6 bg-white transition-opacity duration-300 ${
+            className={`mobile-menu-bar block h-0.5 w-6 bg-dyota-navy transition-opacity duration-300 ${
               mobileOpen ? "opacity-0" : "opacity-100"
             }`}
           />
           <span
-            className={`mobile-menu-bar block h-0.5 w-6 bg-white transition-transform duration-300 ${
+            className={`mobile-menu-bar block h-0.5 w-6 bg-dyota-navy transition-transform duration-300 ${
               mobileOpen ? "-translate-y-2 -rotate-45" : ""
             }`}
           />
@@ -113,7 +111,7 @@ export default function Navbar() {
       </nav>
 
       <div
-        className={`mobile-nav fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-dyota-navy md:hidden ${
+        className={`mobile-nav fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-white/98 backdrop-blur-md md:hidden ${
           mobileOpen ? "mobile-nav-open" : ""
         }`}
         aria-hidden={!mobileOpen}
@@ -123,7 +121,7 @@ export default function Navbar() {
             <Link
               href={link.href}
               className={`text-2xl font-semibold tracking-wider uppercase ${
-                isActive(link.href) ? "text-dyota-orange" : "text-white"
+                isActive(link.href) ? "text-dyota-orange" : "text-dyota-navy"
               }`}
               onClick={() => setMobileOpen(false)}
             >

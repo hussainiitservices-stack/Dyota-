@@ -33,10 +33,37 @@ html {
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(
+    180deg,
+    #f8fafc 0%,
+    #ffffff 40%,
+    #f1f5f9 100%
+  );
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   overflow-x: hidden;
+}
+
+.section-light {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.section-gradient {
+  background: linear-gradient(
+    135deg,
+    #f8fafc 0%,
+    #ffffff 50%,
+    #eef2ff 100%
+  );
+}
+
+.section-warm {
+  background: linear-gradient(
+    135deg,
+    #fff7ed 0%,
+    #ffffff 50%,
+    #f8fafc 100%
+  );
 }
 
 ::selection {
@@ -120,10 +147,24 @@ body {
 }
 
 .glass-nav {
-  background: rgba(0, 26, 77, 0.35);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(248, 250, 252, 0.9) 60%,
+    rgba(238, 242, 255, 0.85) 100%
+  );
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 45, 136, 0.08);
+  box-shadow: 0 1px 12px rgba(0, 45, 136, 0.06);
+}
+
+.glass-nav-scrolled {
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 45, 136, 0.1);
+  box-shadow: 0 4px 24px rgba(0, 45, 136, 0.08);
 }
 
 .glass-btn {
@@ -188,8 +229,12 @@ body {
   animation-delay: 0.6s;
 }
 
-.nav-cta {
+.nav-link-item:nth-child(5) {
   animation-delay: 0.7s;
+}
+
+.nav-cta {
+  animation-delay: 0.8s;
 }
 
 .mobile-nav {
@@ -234,6 +279,10 @@ body {
 
 .mobile-nav-open .mobile-nav-link:nth-child(4) {
   transition-delay: 0.24s;
+}
+
+.mobile-nav-open .mobile-nav-link:nth-child(5) {
+  transition-delay: 0.32s;
 }
 
 /* Scroll reveal animations */

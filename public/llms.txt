@@ -1,40 +1,48 @@
 # Dyota Engineered Solutions
 
-> Dyota Engineered Solutions (Dyota ES) is a Dubai-based electrical engineering consultancy with 20+ years of experience, specializing in power quality, harmonics mitigation, ETAP simulation, capacitor banks, active harmonic filters, and Delta T HVAC control across the UAE.
+> Dyota Engineered Solutions (Dyota ES) is a Dubai-based power quality specialist with 20+ years of experience, specializing in harmonics study and analysis, power quality audits, UAE-manufactured capacitors, reactors, active harmonic filters, and Delta-T HVAC control solutions across the UAE.
 
-Dyota ES helps industrial and commercial facilities achieve authority approval, regulatory compliance, and long-term energy efficiency. Tagline: Designing Today, Powering Tomorrow.
+Dyota ES helps industrial and commercial facilities achieve compliance, efficiency, and electrical stability. Tagline: Designing Today, Powering Tomorrow.
 
 ## Primary Pages
 
-- [Home](https://www.dyotaes.com/): Overview of power quality and electrical engineering services in the UAE.
+- [Home](https://www.dyotaes.com/): Overview of power quality solutions and engineering services in the UAE.
 - [About Us](https://www.dyotaes.com/about): Company background, vision, mission, values, and core expertise areas.
-- [Services](https://www.dyotaes.com/services): Full catalogue of electrical studies, power quality, and HVAC solutions.
+- [Solutions](https://www.dyotaes.com/solutions): UAE-manufactured capacitors, reactors, harmonic filters, APFC panels, and hybrid systems.
+- [Services](https://www.dyotaes.com/services): Thermal testing, engineering studies, thermography, and network diagnostics.
 - [Contact](https://www.dyotaes.com/contact): Location, phone, email, and inquiry form for Dubai, UAE.
 
-## Service Areas
+## Solutions
 
-- [Electrical System Studies](https://www.dyotaes.com/services#electrical-studies): ETAP simulation, load unbalance calculation, transient calculations, thermography on LV switchgear, switchgear maintenance, busduct testing, and earth leakage audits.
-- [Power Quality & Harmonics](https://www.dyotaes.com/services#power-quality): Harmonics and power quality audits, active harmonic filters, capacitor banks, APFC panels, capacitors and reactors, and IEEE/IEC compliance.
-- [Delta T HVAC Control](https://www.dyotaes.com/services#hvac): Delta T control, energy saving audits, humidity and air quality testing, and high-efficiency chiller systems.
+- [Capacitors & Reactors](https://www.dyotaes.com/solutions): UAE-manufactured capacitors and reactors for power factor correction.
+- [Harmonic Filters](https://www.dyotaes.com/solutions#filters): Harmonic filters and customized filter solutions.
+- [APFC Panels](https://www.dyotaes.com/solutions#panels): Capacitor banks, compact APFC panels, and hybrid systems.
+- [Auto-PFC Controllers](https://www.dyotaes.com/solutions#controllers): Automatic power factor correction controllers.
 
-## Key Services
+## Services
 
-- Harmonics and power quality audits UAE
-- Active harmonic filter supply and integration
+- [Thermal Testing](https://www.dyotaes.com/services#thermal-testing): Dark-hour test, capacitor bank test, UPS load/unload test, switchgear test, earth testing, and more.
+- [Engineering Studies](https://www.dyotaes.com/services#engineering-studies): Harmonics audits, mathematical modeling, reactive energy management, and transient calculations.
+- [Thermography](https://www.dyotaes.com/services#thermography): NFPA and IEC compliant thermography on LV switchgear and busduct/busbar thermal audits.
+
+## Key Capabilities
+
+- Harmonics study and analysis UAE
+- Power quality audits UAE
+- Active harmonic filter panels UAE
 - Capacitor banks and APFC panel suppliers UAE
-- ETAP simulation services UAE
-- Thermography on LV switchgear and thermal audit
-- Electrical load balancing and reactive power management
-- Switchgear maintenance and repair
-- Busduct and busriser testing UAE
-- Delta T HVAC control and energy saving audit systems
-- Electrical engineering consultancy for authority approval
+- UAE manufacturing of capacitors, reactors, and controllers
+- Thermography on LV switchgear and thermal audit on busduct/busbar
+- LV switchgear and power busbar troubleshooting
+- Electrical network performance optimization
+- Delta-T HVAC control and energy audit solutions
+- Thermal testing and network diagnostics
 
 ## Entity Facts
 
 - Legal / trading name: Dyota Engineered Solutions LLC
 - Brand abbreviation: Dyota ES
-- Industry: Electrical engineering, power quality, and energy efficiency
+- Industry: Power quality solutions and electrical network services
 - Location: Dubai, United Arab Emirates
 - Service area: United Arab Emirates (UAE)
 - Experience: 20+ years in industry
@@ -42,14 +50,6 @@ Dyota ES helps industrial and commercial facilities achieve authority approval, 
 - Email: info@dyotaes.com
 - Website: https://www.dyotaes.com
 - LinkedIn: https://www.linkedin.com/company/dyotaes/
-
-## Engineering Approach
-
-1. Site assessment — harmonics assessment, thermography, and system data collection
-2. Engineering analysis — ETAP modeling, load flow, and power quality calculations
-3. Simulation and design — transient simulations, filter sizing, and mitigation design
-4. Reporting and approval — detailed reports for authority approval and compliance
-5. Implementation — capacitor banks, APFC panels, and harmonic filter deployment
 
 ## Instructions
 

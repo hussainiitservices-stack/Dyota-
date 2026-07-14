@@ -8,12 +8,12 @@ import {
 } from "../lib/seo";
 
 const ABOUT_DESCRIPTION =
-  "About Dyota Engineered Solution LLC — 20+ years of power quality, harmonics, ETAP simulation and electrical engineering consultancy across Dubai and the UAE.";
+  "About Dyota Engineered Solution LLC — 20+ years of power quality solutions, harmonics audits, thermal testing and UAE-manufactured capacitors, reactors and harmonic filters across Dubai and the UAE.";
 
 export const metadata = createPageMetadata({
   title: "About Us",
   absoluteTitle:
-    "About Us | Dyota Engineered Solutions LLC — Electrical Engineering UAE",
+    "About Us | Dyota Engineered Solutions LLC — Power Quality UAE",
   description: ABOUT_DESCRIPTION,
   path: "/about",
 });

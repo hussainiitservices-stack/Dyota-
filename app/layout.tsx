@@ -81,7 +81,7 @@ export const metadata: Metadata = {
         url: DEFAULT_OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "Dyota Engineered Solutions — electrical engineering and power quality services in UAE",
+        alt: "Dyota Engineered Solutions — power quality and harmonic filter solutions in UAE",
       },
     ],
   },

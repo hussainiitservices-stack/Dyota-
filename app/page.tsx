@@ -1,5 +1,6 @@
 import Hero from "./components/Hero";
 import About from "./components/About";
+import Solutions from "./components/Solutions";
 import Services from "./components/Services";
 import Contact from "./components/Contact";
 import { DEFAULT_DESCRIPTION, createPageMetadata } from "./lib/seo";
@@ -15,6 +16,7 @@ export default function HomePage() {
     <>
       <Hero />
       <About />
+      <Solutions />
       <Services />
       <Contact />
     </>

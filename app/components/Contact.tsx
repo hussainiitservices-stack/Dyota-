@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, type FormEvent } from "react";
 import ScrollReveal from "./ScrollReveal";
-import { contactInfo } from "../lib/content";
+import { contactCta, contactInfo } from "../lib/content";
 
 export default function Contact({ isStandalone = false }: { isStandalone?: boolean }) {
   const [submitted, setSubmitted] = useState(false);
@@ -27,16 +27,15 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className={`relative scroll-mt-24 overflow-hidden bg-dyota-navy px-6 lg:px-8 ${
+      className={`section-warm relative scroll-mt-24 overflow-hidden px-6 lg:px-8 ${
         isStandalone ? "pt-28 pb-24" : "py-24"
       }`}
     >
-      {/* Animated background */}
       <div className="pointer-events-none absolute inset-0">
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute h-px bg-gradient-to-r from-transparent via-dyota-orange/20 to-transparent"
+            className="absolute h-px bg-gradient-to-r from-transparent via-dyota-orange/15 to-transparent"
             style={{ top: `${10 + i * 16}%` }}
             animate={{ x: ["-100%", "100%"] }}
             transition={{
@@ -51,14 +50,12 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
 
       <div className="relative mx-auto max-w-7xl">
         <ScrollReveal className="mb-16 text-center">
-          <motion.span
-            className="mb-4 inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold tracking-wider text-dyota-orange uppercase"
-          >
+          <span className="mb-4 inline-block rounded-full bg-dyota-orange/10 px-4 py-1.5 text-sm font-semibold tracking-wider text-dyota-orange uppercase">
             Contact
-          </motion.span>
+          </span>
           <HeadingTag
             id="contact-heading"
-            className="mb-4 text-4xl font-bold text-white md:text-5xl"
+            className="mb-4 text-4xl font-bold text-dyota-navy md:text-5xl"
           >
             Get In Touch
           </HeadingTag>
@@ -66,10 +63,9 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
         </ScrollReveal>
 
         <div className="grid gap-12 lg:grid-cols-2">
-          {/* Contact info */}
           <ScrollReveal direction="left">
             <div className="space-y-8">
-              <h4 className="text-xl font-bold text-white">Contact Information</h4>
+              <h4 className="text-xl font-bold text-dyota-navy">Contact Information</h4>
               {[
                 {
                   label: "Location",
@@ -124,8 +120,8 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
                   whileHover={{ x: 8 }}
                 >
                   <motion.div
-                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-dyota-orange/20 text-dyota-orange"
-                    whileHover={{ scale: 1.1, backgroundColor: "rgba(247,148,29,0.4)" }}
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-dyota-orange/10 text-dyota-orange"
+                    whileHover={{ scale: 1.1 }}
                   >
                     <svg
                       className="h-6 w-6"
@@ -139,18 +135,18 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
                     </svg>
                   </motion.div>
                   <div>
-                    <p className="text-sm font-medium text-white/60">
+                    <p className="text-sm font-medium text-foreground/60">
                       {item.label}
                     </p>
                     {"href" in item && item.href ? (
                       <a
                         href={item.href}
-                        className="text-lg font-semibold text-white transition-colors hover:text-dyota-orange"
+                        className="text-lg font-semibold text-dyota-navy transition-colors hover:text-dyota-orange"
                       >
                         {item.value}
                       </a>
                     ) : (
-                      <p className="text-lg font-semibold text-white">
+                      <p className="text-lg font-semibold text-dyota-navy">
                         {item.value}
                       </p>
                     )}
@@ -159,26 +155,21 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
               ))}
 
               <motion.div
-                className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
+                className="rounded-2xl border border-dyota-navy/10 bg-white p-6 shadow-sm"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5 }}
               >
-                <p className="text-white/80 leading-relaxed">
-                  Ready to power your world with innovative electrical solutions?
-                  Our team is here to help you achieve efficiency, safety, and
-                  sustainability.
-                </p>
+                <p className="leading-relaxed text-foreground/80">{contactCta}</p>
               </motion.div>
             </div>
           </ScrollReveal>
 
-          {/* Contact form */}
           <ScrollReveal direction="right" delay={0.2}>
             <motion.form
               onSubmit={handleSubmit}
-              className="rounded-2xl bg-white p-8 shadow-2xl shadow-black/20"
+              className="rounded-2xl border border-dyota-navy/10 bg-white p-8 shadow-lg shadow-dyota-navy/5"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -206,7 +197,7 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
                           name={field.name}
                           rows={4}
                           required={field.name === "email" || field.name === "message"}
-                          className="w-full rounded-xl border-2 border-dyota-navy/10 bg-dyota-navy/5 px-4 py-3 text-foreground outline-none transition-all focus:border-dyota-orange focus:bg-white"
+                          className="w-full rounded-xl border-2 border-dyota-navy/10 bg-slate-50 px-4 py-3 text-foreground outline-none transition-all focus:border-dyota-orange focus:bg-white"
                           onFocus={() => setFocused(field.name)}
                           onBlur={() => setFocused(null)}
                         />
@@ -219,7 +210,7 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
                             field.name === "email" ||
                             field.name === "firstName"
                           }
-                          className="w-full rounded-xl border-2 border-dyota-navy/10 bg-dyota-navy/5 px-4 py-3 text-foreground outline-none transition-all focus:border-dyota-orange focus:bg-white"
+                          className="w-full rounded-xl border-2 border-dyota-navy/10 bg-slate-50 px-4 py-3 text-foreground outline-none transition-all focus:border-dyota-orange focus:bg-white"
                           onFocus={() => setFocused(field.name)}
                           onBlur={() => setFocused(null)}
                         />
