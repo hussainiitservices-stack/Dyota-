@@ -21,9 +21,7 @@ Dyota ES helps industrial and commercial facilities achieve compliance, efficien
 
 ## Services
 
-- [Thermal Testing](https://www.dyotaes.com/services#thermal-testing): Dark-hour test, capacitor bank test, UPS load/unload test, switchgear test, earth testing, and more.
-- [Engineering Studies](https://www.dyotaes.com/services#engineering-studies): Harmonics audits, mathematical modeling, reactive energy management, and transient calculations.
-- [Thermography](https://www.dyotaes.com/services#thermography): NFPA and IEC compliant thermography on LV switchgear and busduct/busbar thermal audits.
+- [Services](https://www.dyotaes.com/services): Thermal testing, harmonics audits, engineering studies, thermography, and network diagnostics.
 
 ## Key Capabilities
 

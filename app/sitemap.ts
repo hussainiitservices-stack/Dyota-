@@ -30,24 +30,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${SITE_URL}/services#thermal-testing`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.85,
-    },
-    {
-      url: `${SITE_URL}/services#engineering-studies`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.85,
-    },
-    {
-      url: `${SITE_URL}/services#thermography`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.85,
-    },
-    {
       url: `${SITE_URL}/contact`,
       lastModified,
       changeFrequency: "yearly",

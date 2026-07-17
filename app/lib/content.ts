@@ -6,11 +6,7 @@ export const navLinks = [
   { label: "Contact", href: "/contact" },
 ] as const;
 
-export const footerLinks = [
-  ...navLinks,
-  { label: "Thermal Testing", href: "/services#thermal-testing" },
-  { label: "Harmonics Audits", href: "/services#engineering-studies" },
-] as const;
+export const footerLinks = [...navLinks] as const;
 
 export const siteImages = {
   heroBackground: "/images/hero-bg.jpg",

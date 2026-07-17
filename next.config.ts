@@ -6,6 +6,31 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  async redirects() {
+    return [
+      // Legacy Wix API paths — stop 404s from old indexed URLs
+      {
+        source: "/_api/:path*",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/services/electrical-studies",
+        destination: "/services",
+        permanent: true,
+      },
+      {
+        source: "/services/hvac",
+        destination: "/services",
+        permanent: true,
+      },
+      {
+        source: "/services/power-quality",
+        destination: "/services",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
