@@ -57,9 +57,7 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  alternates: {
-    canonical: SITE_URL,
-  },
+  // Canonical is set per-page via createPageMetadata — do not pin every route to home
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -81,7 +79,7 @@ export const metadata: Metadata = {
         url: DEFAULT_OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "Dyota Engineered Solutions — power quality and harmonic filter solutions in UAE",
+        alt: "Dyota Engineered Solutions — Electrical Engineering Services UAE and Power Quality Solutions UAE",
       },
     ],
   },

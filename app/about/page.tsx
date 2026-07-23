@@ -1,20 +1,18 @@
 import About from "../components/About";
 import JsonLd from "../components/JsonLd";
 import {
+  ABOUT_PAGE_DESCRIPTION,
+  ABOUT_PAGE_TITLE,
   breadcrumbSchema,
   buildSchemaGraph,
   createPageMetadata,
   webPageSchema,
 } from "../lib/seo";
 
-const ABOUT_DESCRIPTION =
-  "About Dyota Engineered Solution LLC — 20+ years of power quality solutions, harmonics audits, thermal testing and UAE-manufactured capacitors, reactors and harmonic filters across Dubai and the UAE.";
-
 export const metadata = createPageMetadata({
   title: "About Us",
-  absoluteTitle:
-    "About Us | Dyota Engineered Solutions LLC — Power Quality UAE",
-  description: ABOUT_DESCRIPTION,
+  absoluteTitle: ABOUT_PAGE_TITLE,
+  description: ABOUT_PAGE_DESCRIPTION,
   path: "/about",
 });
 
@@ -29,8 +27,8 @@ export default function AboutPage() {
           ]),
           webPageSchema({
             path: "/about",
-            name: "About Dyota Engineered Solutions",
-            description: ABOUT_DESCRIPTION,
+            name: ABOUT_PAGE_TITLE,
+            description: ABOUT_PAGE_DESCRIPTION,
             type: "AboutPage",
           }),
         ])}

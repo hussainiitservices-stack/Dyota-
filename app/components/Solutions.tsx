@@ -7,6 +7,12 @@ import { solutionsContent } from "../lib/content";
 
 export default function Solutions({ isStandalone = false }: { isStandalone?: boolean }) {
   const HeadingTag = isStandalone ? "h1" : "h2";
+  const categories = isStandalone
+    ? solutionsContent.categories
+    : solutionsContent.categories.map((category) => ({
+        ...category,
+        items: category.items.slice(0, 3),
+      }));
 
   return (
     <section
@@ -25,14 +31,19 @@ export default function Solutions({ isStandalone = false }: { isStandalone?: boo
           >
             {solutionsContent.title}
           </HeadingTag>
-          <h4 className="mx-auto max-w-2xl text-lg font-normal text-foreground/70">
-            {solutionsContent.subtitle}
+          <h4 className="mx-auto max-w-3xl text-lg font-normal text-foreground/70">
+            {isStandalone
+              ? solutionsContent.subtitle
+              : "Active Harmonic Filter UAE, Capacitor Bank Manufacturer UAE, Power Factor Correction UAE, and Chiller plant manager supplier UAE."}
           </h4>
           <div className="section-divider mx-auto mt-8 w-24" />
         </ScrollReveal>
 
-        <StaggerContainer className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3" stagger={0.1}>
-          {solutionsContent.categories.map((category, index) => (
+        <StaggerContainer
+          className="grid items-stretch gap-8 md:grid-cols-2"
+          stagger={0.1}
+        >
+          {categories.map((category, index) => (
             <StaggerItem key={category.id}>
               <AnimatedCard
                 minHeight="min-h-[280px]"
@@ -41,11 +52,18 @@ export default function Solutions({ isStandalone = false }: { isStandalone?: boo
                 className="p-6"
               >
                 <h3
-                  id={category.id}
-                  className="mb-4 text-xl font-bold text-dyota-navy"
+                  id={isStandalone ? category.id : undefined}
+                  className="mb-3 text-xl font-bold text-dyota-navy"
                 >
                   {category.title}
                 </h3>
+                {isStandalone &&
+                  "description" in category &&
+                  category.description && (
+                    <p className="mb-4 text-sm leading-relaxed text-foreground/70">
+                      {category.description}
+                    </p>
+                  )}
                 <ul className="space-y-2">
                   {category.items.map((item) => (
                     <li

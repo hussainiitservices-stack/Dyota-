@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Dyota Engineered Solutions",
     short_name: "Dyota ES",
     description:
-      "Power quality solutions, harmonic filters, and UAE-manufactured capacitors and reactors in Dubai, UAE.",
+      "Electrical Engineering Services UAE, Power Quality Solutions UAE, Active Harmonic Filter Manufacturer UAE and Capacitor Bank Manufacturer UAE in Dubai.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

@@ -1,5 +1,6 @@
 import Services from "../components/Services";
 import JsonLd from "../components/JsonLd";
+import LegacyHashRedirect from "../components/LegacyHashRedirect";
 import {
   SERVICES_PAGE_DESCRIPTION,
   SERVICES_PAGE_TITLE,
@@ -20,6 +21,7 @@ export const metadata = createPageMetadata({
 export default function ServicesPage() {
   return (
     <>
+      <LegacyHashRedirect />
       <JsonLd
         data={buildSchemaGraph([
           breadcrumbSchema([

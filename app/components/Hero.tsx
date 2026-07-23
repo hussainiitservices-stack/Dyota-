@@ -15,8 +15,8 @@ export default function Hero() {
       <div className="absolute inset-0 z-0">
         <Image
           src={siteImages.heroBackground}
-          alt="Electrical substation and power engineering background"
-          title="Electrical substation and power engineering background — Dyota ES UAE"
+          alt="Electrical Engineering Services UAE — power quality and substation engineering"
+          title="Electrical Engineering Services UAE | Power Quality Solutions UAE — Dyota ES"
           fill
           className="scale-105 object-cover object-center opacity-30"
           sizes="100vw"

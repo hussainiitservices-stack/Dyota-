@@ -6,6 +6,7 @@ import {
   breadcrumbSchema,
   buildSchemaGraph,
   createPageMetadata,
+  solutionsSchema,
   webPageSchema,
 } from "../lib/seo";
 
@@ -31,6 +32,7 @@ export default function SolutionsPage() {
             description: SOLUTIONS_PAGE_DESCRIPTION,
             type: "CollectionPage",
           }),
+          solutionsSchema(),
         ])}
       />
       <Solutions isStandalone />

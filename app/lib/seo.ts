@@ -9,29 +9,35 @@ export const GOOGLE_SITE_VERIFICATION = "googlee3d9b88b6cf785ea";
 
 /** 60–65 characters for search result titles */
 export const DEFAULT_TITLE =
-  "Dyota ES | Power Quality & Harmonic Filter Solutions UAE";
+  "Electrical Engineering Services UAE | Power Quality Solutions | Dyota ES";
 
 /** 160–165 characters for meta descriptions */
 export const DEFAULT_DESCRIPTION =
-  "UAE-manufactured capacitors, reactors, harmonic filters and APFC panels. Harmonics study, power quality audits, thermal testing and Delta-T HVAC control across Dubai and UAE.";
+  "Electrical Engineering Services UAE & Power Quality Solutions UAE. Active Harmonic Filter Manufacturer UAE, Capacitor Bank Manufacturer UAE, ETAP Simulation, Energy Audit UAE & DEWA Approval consultancy in Dubai.";
 
 export const CONTACT_PAGE_TITLE =
-  "Contact Us | Dyota Engineered Solution LLC — Dubai, UAE Experts";
+  "Contact Electrical Engineering Companies in UAE | Dyota ES Dubai";
 
 export const CONTACT_PAGE_DESCRIPTION =
-  "Contact Dyota Engineered Solution LLC in Dubai, UAE for power quality solutions, harmonics audits, harmonic filters, thermal testing and Delta-T HVAC control. Call +971 55-366-5458.";
+  "Contact Dyota Engineered Solutions in Dubai for Electrical Engineering Services UAE, Power Quality Solutions UAE, Active Harmonic Filter UAE, Capacitor bank supplier in UAE, Energy Audit UAE and DEWA Approval consultancy. Call +971 55-366-5458.";
 
 export const SOLUTIONS_PAGE_TITLE =
-  "Power Quality Solutions UAE | Dyota Engineered Solution LLC";
+  "Power Quality Solutions UAE | Active Harmonic Filter & Capacitor Banks";
 
 export const SOLUTIONS_PAGE_DESCRIPTION =
-  "UAE-manufactured capacitors, reactors, auto-PFC controllers, harmonic filters, capacitor banks, compact APFC panels and hybrid systems from Dyota Engineered Solution LLC in Dubai.";
+  "Power Quality Solutions UAE from an Active Harmonic Filter Manufacturer UAE and Capacitor Bank Manufacturer UAE. Best capacitor banks UAE, Harmonic Filter Supplier UAE, Power Factor Correction UAE and Chiller plant manager supplier UAE.";
 
 export const SERVICES_PAGE_TITLE =
-  "Electrical Engineering Services in UAE | Dyota Engineered Solution LLC";
+  "Electrical Engineering Services UAE | ETAP, Audit & Consultancy";
 
 export const SERVICES_PAGE_DESCRIPTION =
-  "Thermal testing, harmonics audits, power quality studies, thermography, reactive energy management and network troubleshooting services from Dyota Engineered Solution LLC in UAE.";
+  "Electrical Engineering Services UAE: ETAP Simulation Services UAE, Relay Coordination Study UAE, Electrical Audit UAE, Energy Audit UAE, Busduct Testing UAE, Thermal Imaging Inspection UAE, Arc Flash Study UAE and DEWA Approval consultancy in UAE.";
+
+export const ABOUT_PAGE_TITLE =
+  "About Dyota ES | Electrical Engineering Companies in UAE";
+
+export const ABOUT_PAGE_DESCRIPTION =
+  "About Dyota Engineered Solutions — Electrical Engineering companies in UAE offering Power Quality Solutions UAE, Active Harmonic Filter Manufacturer UAE, Capacitor Bank Manufacturer UAE, Electrical Consultancy UAE and energy audit companies in UAE expertise.";
 
 type PageMetadataOptions = {
   title: string;
@@ -62,6 +68,10 @@ export function createPageMetadata({
     title: { absolute: resolvedTitle },
     description,
     keywords: keywords ? [...keywords] : [...seoKeywords],
+    robots: {
+      index: true,
+      follow: true,
+    },
     alternates: {
       canonical: url,
     },
@@ -105,10 +115,13 @@ export function organizationSchema() {
     "@type": "Organization",
     "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
+    alternateName: ["Dyota ES", "Dyota Engineered Solution LLC"],
     url: SITE_URL,
     logo: `${SITE_URL}/favicon.png`,
     email: contactInfo.email,
     telephone: contactInfo.phone,
+    description: DEFAULT_DESCRIPTION,
+    knowsAbout: [...seoKeywords],
     address: {
       "@type": "PostalAddress",
       addressLocality: "Dubai",
@@ -140,6 +153,7 @@ export function localBusinessSchema() {
     image: `${SITE_URL}${DEFAULT_OG_IMAGE}`,
     telephone: contactInfo.phone,
     email: contactInfo.email,
+    description: DEFAULT_DESCRIPTION,
     address: {
       "@type": "PostalAddress",
       addressLocality: "Dubai",
@@ -151,6 +165,7 @@ export function localBusinessSchema() {
     },
     sameAs: [contactInfo.linkedin],
     priceRange: "$$",
+    knowsAbout: [...seoKeywords],
   };
 }
 
@@ -197,7 +212,9 @@ export function servicesSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    serviceType: "Power Quality & Electrical Network Services",
+    serviceType: "Electrical Engineering Services UAE",
+    name: "Electrical Engineering Services UAE",
+    description: SERVICES_PAGE_DESCRIPTION,
     provider: { "@id": `${SITE_URL}/#organization` },
     areaServed: {
       "@type": "Country",
@@ -205,27 +222,139 @@ export function servicesSchema() {
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Engineering Services",
+      name: "Electrical Engineering Services UAE",
       itemListElement: [
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Thermal Testing & Network Diagnostics",
+            name: "Electrical Engineering Services UAE & Electrical Consultancy UAE",
           },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Harmonics & Power Quality Audits",
+            name: "ETAP Simulation Services UAE",
           },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Thermography & LV Switchgear Inspection",
+            name: "Relay Coordination Study UAE",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Arc Flash Study UAE",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Electrical Audit UAE",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Energy Audit UAE",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Busduct Testing UAE",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Thermal Imaging Inspection UAE",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Earth Leakage Audit UAE",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "DEWA Approval consultancy in UAE",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Power Factor Correction UAE",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Reactive Power Compensation UAE",
+          },
+        },
+      ],
+    },
+  };
+}
+
+export function solutionsSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Power Quality Solutions UAE",
+    name: "Power Quality Solutions UAE",
+    description: SOLUTIONS_PAGE_DESCRIPTION,
+    provider: { "@id": `${SITE_URL}/#organization` },
+    areaServed: {
+      "@type": "Country",
+      name: "United Arab Emirates",
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Power Quality Solutions UAE",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Product",
+            name: "Active Harmonic Filter UAE",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Product",
+            name: "Capacitor Banks UAE — Capacitor Bank Manufacturer UAE",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Power Factor Correction UAE",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Product",
+            name: "Chiller plant manager supplier UAE systems",
           },
         },
       ],
