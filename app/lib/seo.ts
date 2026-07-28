@@ -6,6 +6,7 @@ export const SITE_NAME = "Dyota Engineered Solutions";
 export const SITE_BRAND = "Dyota ES";
 export const DEFAULT_OG_IMAGE = "/images/hero-bg.jpg";
 export const GOOGLE_SITE_VERIFICATION = "googlee3d9b88b6cf785ea";
+export const GA_MEASUREMENT_ID = "G-G94ZWCV2WL";
 
 /** 60–65 characters for search result titles */
 export const DEFAULT_TITLE =
