@@ -10,11 +10,11 @@ export const GA_MEASUREMENT_ID = "G-G94ZWCV2WL";
 
 /** 60–65 characters for search result titles */
 export const DEFAULT_TITLE =
-  "Electrical Engineering Services UAE | Power Quality Solutions | Dyota ES";
+  "Power Quality Solutions UAE | Dyota Engineered Solutions LLC";
 
 /** 160–165 characters for meta descriptions */
 export const DEFAULT_DESCRIPTION =
-  "Electrical Engineering Services UAE & Power Quality Solutions UAE. Active Harmonic Filter Manufacturer UAE, Capacitor Bank Manufacturer UAE, ETAP Simulation, Energy Audit UAE & DEWA Approval consultancy in Dubai.";
+  "Dyota Engineered Solutions LLC provides power quality solutions, active harmonic filters, capacitor banks, ETAP studies, and electrical services across the UAE.";
 
 export const CONTACT_PAGE_TITLE =
   "Contact Electrical Engineering Companies in UAE | Dyota ES Dubai";
@@ -29,10 +29,10 @@ export const SOLUTIONS_PAGE_DESCRIPTION =
   "Power Quality Solutions UAE from an Active Harmonic Filter Manufacturer UAE and Capacitor Bank Manufacturer UAE. Best capacitor banks UAE, Harmonic Filter Supplier UAE, Power Factor Correction UAE and Chiller plant manager supplier UAE.";
 
 export const SERVICES_PAGE_TITLE =
-  "Electrical Engineering Services UAE | ETAP, Audit & Consultancy";
+  "Electrical Engineering Services UAE | Dyota Engineered Solutions";
 
 export const SERVICES_PAGE_DESCRIPTION =
-  "Electrical Engineering Services UAE: ETAP Simulation Services UAE, Relay Coordination Study UAE, Electrical Audit UAE, Energy Audit UAE, Busduct Testing UAE, Thermal Imaging Inspection UAE, Arc Flash Study UAE and DEWA Approval consultancy in UAE.";
+  "Explore Dyota's electrical engineering services in the UAE, including power quality audits, ETAP studies, thermography, testing, and harmonic analysis.";
 
 export const ABOUT_PAGE_TITLE =
   "About Dyota ES | Electrical Engineering Companies in UAE";
