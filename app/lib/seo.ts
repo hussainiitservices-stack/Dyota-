@@ -10,7 +10,7 @@ export const GA_MEASUREMENT_ID = "G-G94ZWCV2WL";
 
 /** 60–65 characters for search result titles */
 export const DEFAULT_TITLE =
-  "Power Quality Solutions UAE | Dyota Engineered Solutions LLC";
+  "Electrical Engineering & Power Quality Solutions UAE";
 
 /** 160–165 characters for meta descriptions */
 export const DEFAULT_DESCRIPTION =
