@@ -65,31 +65,14 @@ const contactItems = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-dyota-navy-dark text-white">
-      {/* Wave transition from contact section */}
-      <div className="pointer-events-none absolute -top-[59px] left-0 right-0 h-[60px]">
-        <svg
-          viewBox="0 0 1440 60"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-full w-full"
-          preserveAspectRatio="none"
-          aria-hidden
-        >
-          <path
-            d="M0 30C360 60 720 0 1080 30C1260 45 1380 15 1440 30V0H0V30Z"
-            className="fill-dyota-navy-dark"
-          />
-        </svg>
-      </div>
-
+    <footer className="relative border-t border-white/40 bg-gradient-to-b from-white/70 via-[#edf7ff]/80 to-[#80d8ff]/30 text-dyota-navy">
       {/* Tagline bar */}
-      <div className="border-b border-white/10 bg-dyota-navy px-6 py-5 lg:px-8">
+      <div className="border-b border-white/50 bg-white/40 px-6 py-5 backdrop-blur-sm lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
           <p className="text-sm font-semibold text-dyota-orange">
             {brand.footerLeft}
           </p>
-          <p className="text-sm font-semibold text-white/80">
+          <p className="text-sm font-semibold text-dyota-navy/75">
             {brand.footerRight}
           </p>
         </div>
@@ -106,22 +89,22 @@ export default function Footer() {
             viewport={{ once: true }}
           >
             <Image
-              src="/logo.png"
-              alt="Dyota Engineered Solutions"
+              src="/logo-des.png"
+              alt="Dyota Engineered Solutions logo — Electrical Engineering & Power Quality Solutions"
               title="Dyota Engineered Solutions — Designing Today, Powering Tomorrow"
-              width={180}
-              height={72}
-              className="mb-5 h-12 w-auto"
+              width={240}
+              height={96}
+              className="mb-5 h-16 w-auto object-contain sm:h-20"
             />
-            <p className="mb-5 max-w-sm text-sm leading-relaxed text-white/60">
+            <p className="mb-5 max-w-sm text-sm leading-relaxed text-dyota-navy/65">
               {brand.mission}
             </p>
             <p className="text-sm font-semibold">
-              <span className="text-white/80">Designing Today, </span>
+              <span className="text-dyota-navy/80">Designing Today, </span>
               <span className="text-dyota-orange">Powering Tomorrow</span>
             </p>
             <div className="mt-6">
-              <p className="mb-3 text-xs font-medium tracking-wide text-white/40 uppercase">
+              <p className="mb-3 text-xs font-medium tracking-wide text-dyota-navy/45 uppercase">
                 Follow Us
               </p>
               <a
@@ -129,7 +112,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Dyota Engineered Solutions on LinkedIn"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 text-white/80 transition-colors hover:bg-dyota-orange hover:text-white"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-dyota-navy/10 bg-white/60 text-dyota-navy transition-colors hover:bg-dyota-orange hover:text-white"
               >
                 <svg
                   className="h-5 w-5"
@@ -150,15 +133,15 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            <h4 className="mb-5 text-sm font-semibold tracking-wider text-dyota-orange uppercase">
+            <h3 className="mb-5 text-sm font-semibold tracking-wider text-dyota-orange uppercase">
               Quick Links
-            </h4>
+            </h3>
             <ul className="space-y-2.5">
               {footerLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/70 transition-colors hover:text-dyota-orange"
+                    className="text-sm text-dyota-navy/70 transition-colors hover:text-dyota-orange"
                   >
                     {link.label}
                   </Link>
@@ -174,13 +157,13 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <h4 className="mb-5 text-sm font-semibold tracking-wider text-dyota-orange uppercase">
+            <h3 className="mb-5 text-sm font-semibold tracking-wider text-dyota-orange uppercase">
               Contact
-            </h4>
+            </h3>
             <ul className="space-y-4">
               {contactItems.map((item) => (
                 <li key={item.label} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10 text-dyota-orange">
+                  <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-dyota-navy/10 bg-white/60 text-dyota-orange">
                     <svg
                       className="h-4 w-4"
                       fill="none"
@@ -193,13 +176,13 @@ export default function Footer() {
                     </svg>
                   </span>
                   <div>
-                    <h6 className="text-xs font-medium tracking-wide text-white/40 uppercase">
+                    <p className="text-xs font-medium tracking-wide text-dyota-navy/45 uppercase">
                       {item.label}
-                    </h6>
+                    </p>
                     {item.href ? (
                       <a
                         href={item.href}
-                        className="text-sm text-white/80 transition-colors hover:text-dyota-orange"
+                        className="text-sm text-dyota-navy/80 transition-colors hover:text-dyota-orange"
                         {...(item.label === "Website"
                           ? { target: "_blank", rel: "noopener noreferrer" }
                           : {})}
@@ -207,7 +190,7 @@ export default function Footer() {
                         {item.value}
                       </a>
                     ) : (
-                      <p className="text-sm text-white/80">{item.value}</p>
+                      <p className="text-sm text-dyota-navy/80">{item.value}</p>
                     )}
                   </div>
                 </li>
@@ -218,14 +201,25 @@ export default function Footer() {
 
         {/* Copyright */}
         <motion.div
-          className="mt-14 border-t border-white/10 pt-8 text-center"
+          className="mt-14 border-t border-dyota-navy/10 pt-8 text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <p className="text-sm text-white/50">
+          <p className="text-sm text-dyota-navy/50">
             © {new Date().getFullYear()} Dyota Engineered Solutions. All rights
             reserved.
+          </p>
+          <p className="mt-2 text-sm text-dyota-navy/50">
+            This website is designed and developed by{" "}
+            <a
+              href="https://thedigitalmagnet.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-dyota-navy/70 underline-offset-2 transition-colors hover:text-dyota-orange hover:underline"
+            >
+              The Digital Magnet
+            </a>
           </p>
         </motion.div>
       </div>

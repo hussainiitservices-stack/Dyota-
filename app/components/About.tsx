@@ -44,7 +44,7 @@ function ValueCard({
         >
           {title[0]}
         </motion.div>
-        <h4 className="text-xl font-bold text-dyota-navy">{title}</h4>
+        <h3 className="text-xl font-bold text-dyota-navy">{title}</h3>
       </div>
 
       <div className="flex flex-1 flex-col">
@@ -53,14 +53,14 @@ function ValueCard({
             {content.map((item, i) => (
               <motion.li
                 key={item}
-                className="flex items-center gap-2 text-foreground/80"
+                className="flex items-start gap-2 text-foreground/80"
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
               >
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-dyota-orange" />
-                {item}
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-dyota-orange" />
+                <span className="text-sm leading-relaxed">{item}</span>
               </motion.li>
             ))}
           </ul>
@@ -79,7 +79,7 @@ export default function About({ isStandalone = false }: { isStandalone?: boolean
     <section
       id="about"
       aria-labelledby="about-heading"
-      className={`relative scroll-mt-24 bg-white px-6 lg:px-8 ${isStandalone ? "pt-28 pb-24" : "py-24"}`}
+      className={`relative scroll-mt-8 bg-white/55 px-6 backdrop-blur-[2px] lg:px-8 ${isStandalone ? "pt-16 pb-24" : "py-24"}`}
     >
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 text-center">
@@ -102,9 +102,25 @@ export default function About({ isStandalone = false }: { isStandalone?: boolean
               animate={{ x: [0, 20, 0], y: [0, -20, 0] }}
               transition={{ duration: 8, repeat: Infinity }}
             />
-            <p className="relative text-lg leading-relaxed text-foreground/85 whitespace-pre-line">
-              {aboutContent.description}
-            </p>
+            <div className="relative space-y-5">
+              <p className="text-lg leading-relaxed text-foreground/85">
+                {aboutContent.intro}
+              </p>
+              <p className="text-lg leading-relaxed text-foreground/85">
+                {aboutContent.description}
+              </p>
+              <ul className="space-y-2 pt-2">
+                {aboutContent.specialties.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-2 text-base text-dyota-navy/90"
+                  >
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-dyota-orange" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </ScrollReveal>
 
@@ -121,9 +137,9 @@ export default function About({ isStandalone = false }: { isStandalone?: boolean
         </StaggerContainer>
 
         <ScrollReveal className="mt-20" delay={0.2}>
-          <h2 className="mb-8 text-center text-2xl font-bold text-dyota-navy">
+          <h3 className="mb-8 text-center text-2xl font-bold text-dyota-navy">
             What Sets Us Apart
-          </h2>
+          </h3>
           <div className="grid grid-cols-2 items-stretch gap-4 sm:grid-cols-3 lg:grid-cols-5">
             {coreValues.map((value) => (
               <div
@@ -133,12 +149,12 @@ export default function About({ isStandalone = false }: { isStandalone?: boolean
                 <span className="mb-3 text-3xl" aria-hidden>
                   {valueIcons[value.icon]}
                 </span>
-                <h5 className="text-sm font-semibold text-dyota-navy">
+                <h4 className="text-sm font-semibold text-dyota-navy">
                   {value.title}
-                </h5>
-                <h6 className="mt-2 text-xs font-medium text-foreground/60">
+                </h4>
+                <p className="mt-2 text-xs font-medium text-foreground/60">
                   {value.subtitle}
-                </h6>
+                </p>
               </div>
             ))}
           </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { contactInfo, seoKeywords } from "./content";
+import { serviceDetails } from "./services";
 
 export const SITE_URL = "https://www.dyotaes.com";
 export const SITE_NAME = "Dyota Engineered Solutions";
@@ -7,25 +8,30 @@ export const SITE_BRAND = "Dyota ES";
 export const DEFAULT_OG_IMAGE = "/images/hero-bg.jpg";
 export const GOOGLE_SITE_VERIFICATION = "googlee3d9b88b6cf785ea";
 
-/** 60–65 characters for search result titles */
+/** Keep UAE once in titles — avoid repeating it in every on-page phrase */
 export const DEFAULT_TITLE =
-  "Dyota ES | Power Quality & Electrical Engineering Services UAE";
+  "Electrical Engineering & Power Quality Solutions | Dyota ES";
 
-/** 160–165 characters for meta descriptions */
 export const DEFAULT_DESCRIPTION =
-  "Power quality audits, harmonic filters, ETAP simulation, capacitor banks and Delta T HVAC control for Dubai and UAE industrial facilities. Trusted for 20+ years.";
+  "Electrical Engineering Services, Power Quality Solutions, Active Harmonic Filters, capacitor banks, Energy Audit and Thermal Imaging for Dubai facilities. 20+ years of expertise.";
 
 export const CONTACT_PAGE_TITLE =
-  "Contact Us | Dyota Engineered Solution LLC — Dubai, UAE Experts";
+  "Contact Dyota Engineered Solutions | Dubai Experts";
 
 export const CONTACT_PAGE_DESCRIPTION =
-  "Contact Dyota Engineered Solution LLC in Dubai, UAE for power quality, harmonics, ETAP simulation, HVAC and electrical engineering services. Call +971 55-366-5458.";
+  "Contact DES in Dubai for Electrical Engineering Services, Power Quality Solutions, Active Harmonic Filter supply, Energy Audit and Thermal Imaging Inspection. Call +971 55-366-5458.";
 
 export const SERVICES_PAGE_TITLE =
-  "Electrical Engineering Services in UAE | Dyota Engineered Solution LLC";
+  "Electrical Engineering Services UAE | Testing & Studies";
 
 export const SERVICES_PAGE_DESCRIPTION =
-  "UAE electrical engineering: ETAP simulation, power quality audits, harmonic filters, capacitor banks, APFC panels and Delta T HVAC control from Dyota Solution LLC.";
+  "Thermal Testing, Engineering Studies, Electrical Audit, Energy Audit, Relay Coordination, Arc Flash Study, Busduct Testing and Thermal Imaging Inspection from Dyota ES.";
+
+export const SOLUTIONS_PAGE_TITLE =
+  "Power Quality Solutions UAE | Harmonic Filters & Capacitor Banks";
+
+export const SOLUTIONS_PAGE_DESCRIPTION =
+  "Active Harmonic Filter Manufacturer and Capacitor Bank Manufacturer products — Harmonic Filter Supplier range, Power Factor Correction, APFC panels and Chiller plant manager systems from DES.";
 
 type PageMetadataOptions = {
   title: string;
@@ -191,7 +197,10 @@ export function servicesSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    serviceType: "Electrical Engineering & Power Quality",
+    name: "Electrical Engineering Services UAE",
+    serviceType: "Thermal Testing & Engineering Studies",
+    description: SERVICES_PAGE_DESCRIPTION,
+    url: `${SITE_URL}/services`,
     provider: { "@id": `${SITE_URL}/#organization` },
     areaServed: {
       "@type": "Country",
@@ -199,27 +208,83 @@ export function servicesSchema() {
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Engineering Services",
+      name: "Our Services",
+      itemListElement: serviceDetails.map((service) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: service.title,
+          url: `${SITE_URL}/services/${service.slug}`,
+          description: service.description,
+        },
+      })),
+    },
+  };
+}
+
+export function solutionsSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Our Solutions — Power Quality Products UAE",
+    serviceType: "Power Quality Solutions UAE",
+    description: SOLUTIONS_PAGE_DESCRIPTION,
+    url: `${SITE_URL}/solutions`,
+    provider: { "@id": `${SITE_URL}/#organization` },
+    areaServed: {
+      "@type": "Country",
+      name: "United Arab Emirates",
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Our Solutions",
       itemListElement: [
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Electrical System Studies & ETAP Simulation",
+            name: "Capacitors",
+            url: `${SITE_URL}/solutions#capacitors`,
           },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Power Quality & Harmonics Solutions",
+            name: "Reactors",
+            url: `${SITE_URL}/solutions#reactors`,
           },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Delta T HVAC Control & Energy Efficiency",
+            name: "Auto-PFC Controller",
+            url: `${SITE_URL}/solutions#controllers`,
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Harmonic Filters",
+            url: `${SITE_URL}/solutions#filters`,
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Capacitor Banks and Compact APFC Panels",
+            url: `${SITE_URL}/solutions#panels`,
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Hybrid Systems",
+            url: `${SITE_URL}/solutions#panels`,
           },
         },
       ],

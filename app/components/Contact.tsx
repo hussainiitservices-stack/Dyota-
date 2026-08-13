@@ -27,8 +27,8 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className={`relative scroll-mt-24 overflow-hidden bg-dyota-navy px-6 lg:px-8 ${
-        isStandalone ? "pt-28 pb-24" : "py-24"
+      className={`relative scroll-mt-8 overflow-hidden bg-gradient-to-b from-[#80d8ff]/25 via-[#edf7ff]/70 to-white/80 px-6 lg:px-8 ${
+        isStandalone ? "pt-16 pb-24" : "py-24"
       }`}
     >
       {/* Animated background */}
@@ -36,7 +36,7 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute h-px bg-gradient-to-r from-transparent via-dyota-orange/20 to-transparent"
+            className="absolute h-px bg-gradient-to-r from-transparent via-dyota-orange/25 to-transparent"
             style={{ top: `${10 + i * 16}%` }}
             animate={{ x: ["-100%", "100%"] }}
             transition={{
@@ -52,13 +52,13 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
       <div className="relative mx-auto max-w-7xl">
         <ScrollReveal className="mb-16 text-center">
           <motion.span
-            className="mb-4 inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold tracking-wider text-dyota-orange uppercase"
+            className="mb-4 inline-block rounded-full bg-dyota-navy/10 px-4 py-1.5 text-sm font-semibold tracking-wider text-dyota-orange uppercase"
           >
             Contact
           </motion.span>
           <HeadingTag
             id="contact-heading"
-            className="mb-4 text-4xl font-bold text-white md:text-5xl"
+            className="mb-4 text-4xl font-bold text-dyota-navy md:text-5xl"
           >
             Get In Touch
           </HeadingTag>
@@ -69,7 +69,7 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
           {/* Contact info */}
           <ScrollReveal direction="left">
             <div className="space-y-8">
-              <h4 className="text-xl font-bold text-white">Contact Information</h4>
+              <h3 className="text-xl font-bold text-dyota-navy">Contact Information</h3>
               {[
                 {
                   label: "Location",
@@ -139,18 +139,18 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
                     </svg>
                   </motion.div>
                   <div>
-                    <p className="text-sm font-medium text-white/60">
+                    <p className="text-sm font-medium text-dyota-navy/55">
                       {item.label}
                     </p>
                     {"href" in item && item.href ? (
                       <a
                         href={item.href}
-                        className="text-lg font-semibold text-white transition-colors hover:text-dyota-orange"
+                        className="text-lg font-semibold text-dyota-navy transition-colors hover:text-dyota-orange"
                       >
                         {item.value}
                       </a>
                     ) : (
-                      <p className="text-lg font-semibold text-white">
+                      <p className="text-lg font-semibold text-dyota-navy">
                         {item.value}
                       </p>
                     )}
@@ -159,13 +159,13 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
               ))}
 
               <motion.div
-                className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
+                className="rounded-2xl border border-white/50 bg-white/45 p-6 shadow-sm backdrop-blur-md"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5 }}
               >
-                <p className="text-white/80 leading-relaxed">
+                <p className="leading-relaxed text-dyota-navy/80">
                   Ready to power your world with innovative electrical solutions?
                   Our team is here to help you achieve efficiency, safety, and
                   sustainability.
@@ -178,14 +178,14 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
           <ScrollReveal direction="right" delay={0.2}>
             <motion.form
               onSubmit={handleSubmit}
-              className="rounded-2xl bg-white p-8 shadow-2xl shadow-black/20"
+              className="rounded-2xl border border-white/60 bg-white/55 p-8 shadow-xl shadow-[#2c5f9e]/10 backdrop-blur-md"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
             >
-              <h4 className="mb-6 text-2xl font-bold text-dyota-navy">
+              <h3 className="mb-6 text-2xl font-bold text-dyota-navy">
                 Write To Us
-              </h4>
+              </h3>
 
               <div className="grid gap-5 sm:grid-cols-2">
                 {fields.map((field) => (

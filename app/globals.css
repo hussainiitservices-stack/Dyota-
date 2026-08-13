@@ -12,6 +12,11 @@
   --dyota-purple: #7b4394;
   --dyota-orange-glow: rgba(242, 101, 34, 0.35);
   --dyota-blue-glow: rgba(0, 45, 136, 0.25);
+  /* Sky palette (reference) — dark → white */
+  --sky-dark: #2c5f9e;
+  --sky-mid: #80d8ff;
+  --sky-light: #edf7ff;
+  --sky-white: #ffffff;
 }
 
 @theme inline {
@@ -33,10 +38,18 @@ html {
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(
+    180deg,
+    var(--sky-dark) 0%,
+    var(--sky-mid) 28%,
+    var(--sky-light) 62%,
+    var(--sky-white) 100%
+  );
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   overflow-x: hidden;
+  min-height: 100%;
 }
 
 ::selection {
@@ -120,10 +133,13 @@ body {
 }
 
 .glass-nav {
-  background: rgba(0, 26, 77, 0.35);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow:
+    0 8px 32px rgba(44, 95, 158, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
 }
 
 .glass-btn {

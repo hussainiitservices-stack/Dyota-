@@ -10,12 +10,12 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-24 pb-16"
+      className="relative flex min-h-[85vh] flex-col items-center justify-center overflow-hidden px-6 pt-10 pb-16 sm:min-h-screen"
     >
       <div className="absolute inset-0 z-0">
         <Image
           src={siteImages.heroBackground}
-          alt="Electrical substation and power engineering background"
+          alt="Electrical substation power engineering background for Dyota Engineered Solutions UAE"
           title="Electrical substation and power engineering background — Dyota ES UAE"
           fill
           className="scale-105 object-cover object-center"
@@ -24,12 +24,13 @@ export default function Hero() {
         />
       </div>
 
+      {/* Keep banner visible; blend into site sky gradient (dark → white) */}
       <div
-        className="absolute inset-0 z-[1] bg-gradient-to-b from-dyota-navy-dark/50 via-dyota-navy/25 to-dyota-navy-dark/60"
+        className="absolute inset-0 z-[1] bg-gradient-to-b from-[#2c5f9e]/55 via-[#80d8ff]/25 to-white/90"
         aria-hidden
       />
       <div
-        className="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,26,77,0.45)_100%)]"
+        className="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_10%,rgba(44,95,158,0.35)_100%)]"
         aria-hidden
       />
 
@@ -67,7 +68,7 @@ export default function Hero() {
 
         <div className="hero-animate hero-animate-delay-5 flex flex-col gap-4 sm:flex-row">
           <a
-            href="#services"
+            href="/solutions"
             className="rounded-full bg-dyota-orange/90 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-dyota-orange/30 backdrop-blur-sm transition-transform hover:scale-105"
           >
             Explore Solutions
