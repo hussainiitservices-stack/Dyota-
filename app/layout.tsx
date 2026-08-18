@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import { seoKeywords } from "./lib/content";
 import {
@@ -22,6 +22,13 @@ const geistSans = Geist({
   display: "swap",
 });
 
+/** Standard website viewport — allow pinch-zoom; not an installable web app */
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#2c5f9e",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -30,7 +37,6 @@ export const metadata: Metadata = {
   },
   description: DEFAULT_DESCRIPTION,
   keywords: [...seoKeywords],
-  applicationName: SITE_NAME,
   authors: [{ name: SITE_NAME, url: SITE_URL }],
   creator: SITE_NAME,
   publisher: SITE_NAME,
@@ -66,7 +72,6 @@ export const metadata: Metadata = {
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
     ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
     shortcut: ["/favicon.ico"],
   },
   openGraph: {
@@ -113,7 +118,9 @@ export default function RootLayout({
           Skip to main content
         </a>
         <Navbar />
-        <main id="main-content">{children}</main>
+        <main id="main-content" className="site-main">
+          {children}
+        </main>
         <Footer />
         <FloatingActions />
       </body>

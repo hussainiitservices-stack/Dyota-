@@ -33,9 +33,9 @@ function ValueCard({
   return (
     <AnimatedCard
       accentClass={`bg-gradient-to-r ${accentMap[variant]}`}
-      minHeight="min-h-[400px]"
+      minHeight="min-h-0 md:min-h-[360px]"
       delay={index * 0.1}
-      className="p-8"
+      className="p-5 sm:p-8"
     >
       <div className="mb-4 flex items-center gap-3">
         <motion.div
@@ -79,16 +79,16 @@ export default function About({ isStandalone = false }: { isStandalone?: boolean
     <section
       id="about"
       aria-labelledby="about-heading"
-      className={`relative scroll-mt-8 bg-white/55 px-6 backdrop-blur-[2px] lg:px-8 ${isStandalone ? "pt-16 pb-24" : "py-24"}`}
+      className={`relative scroll-mt-8 bg-white/55 px-4 backdrop-blur-[2px] sm:px-6 lg:px-8 ${isStandalone ? "pt-12 pb-16 sm:pt-16 sm:pb-24" : "py-16 sm:py-24"}`}
     >
       <div className="mx-auto max-w-7xl">
-        <div className="mb-16 text-center">
+        <div className="mb-10 text-center sm:mb-16">
           <span className="mb-4 inline-block rounded-full bg-dyota-navy/10 px-4 py-1.5 text-sm font-semibold tracking-wider text-dyota-navy uppercase">
             About
           </span>
           <HeadingTag
             id="about-heading"
-            className="mb-4 text-4xl font-bold text-dyota-navy md:text-5xl"
+            className="mb-4 text-3xl font-bold text-dyota-navy sm:text-4xl md:text-5xl"
           >
             {aboutContent.title}
           </HeadingTag>
@@ -96,24 +96,24 @@ export default function About({ isStandalone = false }: { isStandalone?: boolean
         </div>
 
         <ScrollReveal delay={0.1}>
-          <div className="relative mb-16 overflow-hidden rounded-3xl bg-gradient-to-br from-dyota-navy/5 to-dyota-orange/5 p-8 md:p-12">
+          <div className="relative mb-10 overflow-hidden rounded-2xl bg-gradient-to-br from-dyota-navy/5 to-dyota-orange/5 p-5 sm:mb-16 sm:rounded-3xl sm:p-8 md:p-12">
             <motion.div
               className="absolute top-0 right-0 h-64 w-64 rounded-full bg-dyota-orange/10 blur-3xl"
               animate={{ x: [0, 20, 0], y: [0, -20, 0] }}
               transition={{ duration: 8, repeat: Infinity }}
             />
             <div className="relative space-y-5">
-              <p className="text-lg leading-relaxed text-foreground/85">
+              <p className="text-base leading-relaxed text-foreground/85 sm:text-lg">
                 {aboutContent.intro}
               </p>
-              <p className="text-lg leading-relaxed text-foreground/85">
+              <p className="text-base leading-relaxed text-foreground/85 sm:text-lg">
                 {aboutContent.description}
               </p>
               <ul className="space-y-2 pt-2">
                 {aboutContent.specialties.map((item) => (
                   <li
                     key={item}
-                    className="flex items-start gap-2 text-base text-dyota-navy/90"
+                    className="flex items-start gap-2 text-sm text-dyota-navy/90 sm:text-base"
                   >
                     <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-dyota-orange" />
                     <span>{item}</span>
@@ -136,15 +136,15 @@ export default function About({ isStandalone = false }: { isStandalone?: boolean
           </StaggerItem>
         </StaggerContainer>
 
-        <ScrollReveal className="mt-20" delay={0.2}>
-          <h3 className="mb-8 text-center text-2xl font-bold text-dyota-navy">
+        <ScrollReveal className="mt-12 sm:mt-20" delay={0.2}>
+          <h3 className="mb-6 text-center text-xl font-bold text-dyota-navy sm:mb-8 sm:text-2xl">
             What Sets Us Apart
           </h3>
-          <div className="grid grid-cols-2 items-stretch gap-4 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="grid grid-cols-2 items-stretch gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
             {coreValues.map((value) => (
               <div
                 key={value.title}
-                className="flex min-h-[140px] flex-col items-center justify-center rounded-2xl border border-dyota-navy/10 bg-white p-6 text-center shadow-sm transition-transform hover:-translate-y-1 hover:border-dyota-orange/30"
+                className="flex min-h-[120px] flex-col items-center justify-center rounded-2xl border border-dyota-navy/10 bg-white p-4 text-center shadow-sm transition-transform hover:-translate-y-1 hover:border-dyota-orange/30 sm:min-h-[140px] sm:p-6"
               >
                 <span className="mb-3 text-3xl" aria-hidden>
                   {valueIcons[value.icon]}

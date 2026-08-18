@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[85vh] flex-col items-center justify-center overflow-hidden px-6 pt-10 pb-16 sm:min-h-screen"
+      className="relative flex min-h-[78vh] flex-col items-center justify-center overflow-hidden px-4 pt-8 pb-14 sm:min-h-[85vh] sm:px-6 sm:pt-10 sm:pb-16 md:min-h-screen"
     >
       <div className="absolute inset-0 z-0">
         <Image
@@ -39,43 +39,43 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
-        <p className="hero-animate hero-animate-delay-1 mb-6 flex flex-wrap items-center justify-center gap-x-2 text-sm font-semibold tracking-[0.2em] uppercase sm:text-base">
+        <p className="hero-animate hero-animate-delay-1 mb-4 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs font-semibold tracking-[0.16em] uppercase sm:mb-6 sm:text-sm sm:tracking-[0.2em] md:text-base">
           <span className="text-white/90 drop-shadow-md">{tag1}</span>
           <span className="text-dyota-orange drop-shadow-md">{tag2}</span>
           <span className="text-white/90 drop-shadow-md">{tag3}</span>
         </p>
 
-        <h1 className="hero-animate hero-animate-delay-2 mb-6 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+        <h1 className="hero-animate hero-animate-delay-2 mb-5 text-[1.75rem] leading-tight font-bold tracking-tight sm:mb-6 sm:text-4xl md:text-5xl lg:text-6xl">
           <span className="block text-white drop-shadow-lg">
             {heroContent.headline.line1}
           </span>
-          <span className="mt-2 block text-dyota-orange drop-shadow-lg">
+          <span className="mt-1.5 block text-dyota-orange drop-shadow-lg sm:mt-2">
             {heroContent.headline.line2}
           </span>
         </h1>
 
-        <div className="hero-animate hero-animate-delay-3 relative mb-8">
-          <div className="rounded-full border border-dyota-orange/60 bg-dyota-orange/20 px-8 py-3.5 backdrop-blur-sm">
-            <p className="text-base font-bold tracking-wide text-white drop-shadow-md sm:text-lg">
+        <div className="hero-animate hero-animate-delay-3 relative mb-6 sm:mb-8">
+          <div className="rounded-full border border-dyota-orange/60 bg-dyota-orange/20 px-4 py-2.5 backdrop-blur-sm sm:px-8 sm:py-3.5">
+            <p className="text-sm font-bold tracking-wide text-white drop-shadow-md sm:text-base md:text-lg">
               {heroContent.experience}
             </p>
           </div>
         </div>
 
-        <p className="hero-animate hero-animate-delay-4 mb-10 max-w-2xl text-base leading-relaxed text-white/90 drop-shadow-md sm:text-lg">
+        <p className="hero-animate hero-animate-delay-4 mb-8 max-w-2xl text-sm leading-relaxed text-white/90 drop-shadow-md sm:mb-10 sm:text-base md:text-lg">
           {heroContent.subheadline}
         </p>
 
-        <div className="hero-animate hero-animate-delay-5 flex flex-col gap-4 sm:flex-row">
+        <div className="hero-animate hero-animate-delay-5 flex w-full max-w-md flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4">
           <a
             href="/solutions"
-            className="rounded-full bg-dyota-orange/90 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-dyota-orange/30 backdrop-blur-sm transition-transform hover:scale-105"
+            className="inline-flex items-center justify-center rounded-full bg-dyota-orange/90 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-dyota-orange/30 backdrop-blur-sm transition-transform hover:scale-105 sm:px-8 sm:py-3.5 sm:text-base"
           >
             Explore Solutions
           </a>
           <a
             href="#contact"
-            className="rounded-full border border-white/40 bg-white/10 px-8 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition-colors hover:border-dyota-orange hover:bg-white/15"
+            className="inline-flex items-center justify-center rounded-full border border-white/40 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:border-dyota-orange hover:bg-white/15 sm:px-8 sm:py-3.5 sm:text-base"
           >
             Get In Touch
           </a>

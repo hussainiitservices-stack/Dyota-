@@ -19,22 +19,22 @@ export default function Solutions({ isStandalone = false }: { isStandalone?: boo
     <section
       id="solutions"
       aria-labelledby="solutions-heading"
-      className={`relative scroll-mt-24 bg-gradient-to-b from-[#80d8ff]/20 via-[#edf7ff]/50 to-white/60 px-6 lg:px-8 ${
-        isStandalone ? "pt-16 pb-24" : "py-24"
+      className={`relative scroll-mt-24 bg-gradient-to-b from-[#80d8ff]/20 via-[#edf7ff]/50 to-white/60 px-4 sm:px-6 lg:px-8 ${
+        isStandalone ? "pt-12 pb-16 sm:pt-16 sm:pb-24" : "py-16 sm:py-24"
       }`}
     >
       <div className="mx-auto max-w-7xl">
-        <ScrollReveal className="mb-12 text-center">
+        <ScrollReveal className="mb-8 text-center sm:mb-12">
           <span className="mb-4 inline-block rounded-full bg-dyota-navy/10 px-4 py-1.5 text-sm font-semibold tracking-wider text-dyota-navy uppercase">
             Solutions
           </span>
           <HeadingTag
             id="solutions-heading"
-            className="mb-4 text-3xl font-bold text-dyota-navy md:text-5xl"
+            className="mb-4 text-2xl font-bold text-dyota-navy sm:text-3xl md:text-5xl"
           >
             {solutionsContent.title}
           </HeadingTag>
-          <p className="mx-auto max-w-3xl text-lg font-normal text-foreground/70">
+          <p className="mx-auto max-w-3xl text-base font-normal text-foreground/70 sm:text-lg">
             {solutionsContent.subtitle}
           </p>
           <div className="section-divider mx-auto mt-8 w-24" />
@@ -49,7 +49,7 @@ export default function Solutions({ isStandalone = false }: { isStandalone?: boo
         )}
 
         <StaggerContainer
-          className="grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3"
+          className="grid items-stretch gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3"
           stagger={0.1}
         >
           {categories.map((category, index) => (
@@ -58,7 +58,7 @@ export default function Solutions({ isStandalone = false }: { isStandalone?: boo
                 minHeight="min-h-[260px]"
                 delay={index * 0.08}
                 accentClass="bg-gradient-to-r from-dyota-navy to-dyota-orange"
-                className="p-6"
+                className="p-5 sm:p-6"
               >
                 <CategoryTag
                   id={isStandalone ? category.id : undefined}

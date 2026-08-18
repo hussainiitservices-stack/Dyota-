@@ -27,8 +27,8 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className={`relative scroll-mt-8 overflow-hidden bg-gradient-to-b from-[#80d8ff]/25 via-[#edf7ff]/70 to-white/80 px-6 lg:px-8 ${
-        isStandalone ? "pt-16 pb-24" : "py-24"
+      className={`relative scroll-mt-8 overflow-hidden bg-gradient-to-b from-[#80d8ff]/25 via-[#edf7ff]/70 to-white/80 px-4 sm:px-6 lg:px-8 ${
+        isStandalone ? "pt-12 pb-16 sm:pt-16 sm:pb-24" : "py-16 sm:py-24"
       }`}
     >
       {/* Animated background */}
@@ -50,7 +50,7 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
       </div>
 
       <div className="relative mx-auto max-w-7xl">
-        <ScrollReveal className="mb-16 text-center">
+        <ScrollReveal className="mb-10 text-center sm:mb-16">
           <motion.span
             className="mb-4 inline-block rounded-full bg-dyota-navy/10 px-4 py-1.5 text-sm font-semibold tracking-wider text-dyota-orange uppercase"
           >
@@ -58,14 +58,14 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
           </motion.span>
           <HeadingTag
             id="contact-heading"
-            className="mb-4 text-4xl font-bold text-dyota-navy md:text-5xl"
+            className="mb-4 text-3xl font-bold text-dyota-navy sm:text-4xl md:text-5xl"
           >
             Get In Touch
           </HeadingTag>
           <div className="section-divider mx-auto w-24" />
         </ScrollReveal>
 
-        <div className="grid gap-12 lg:grid-cols-2">
+        <div className="grid gap-8 sm:gap-12 lg:grid-cols-2">
           {/* Contact info */}
           <ScrollReveal direction="left">
             <div className="space-y-8">
@@ -178,7 +178,7 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
           <ScrollReveal direction="right" delay={0.2}>
             <motion.form
               onSubmit={handleSubmit}
-              className="rounded-2xl border border-white/60 bg-white/55 p-8 shadow-xl shadow-[#2c5f9e]/10 backdrop-blur-md"
+              className="rounded-2xl border border-white/60 bg-white/55 p-5 shadow-xl shadow-[#2c5f9e]/10 backdrop-blur-md sm:p-8"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}

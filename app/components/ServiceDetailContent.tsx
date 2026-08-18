@@ -11,10 +11,10 @@ export default function ServiceDetailContent({
   const related = getRelatedServices(service);
 
   return (
-    <article className="relative bg-gradient-to-b from-white/70 via-[#edf7ff]/50 to-[#80d8ff]/20 px-6 pt-28 pb-24 lg:px-8">
+    <article className="relative bg-gradient-to-b from-white/70 via-[#edf7ff]/50 to-[#80d8ff]/20 px-4 pt-10 pb-16 sm:px-6 sm:pt-16 sm:pb-24 lg:px-8">
       <div className="mx-auto max-w-4xl">
-        <nav aria-label="Breadcrumb" className="mb-8 text-sm text-foreground/60">
-          <ol className="flex flex-wrap items-center gap-2">
+        <nav aria-label="Breadcrumb" className="mb-6 text-xs text-foreground/60 sm:mb-8 sm:text-sm">
+          <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <li>
               <Link href="/" className="hover:text-dyota-orange">
                 Home
@@ -43,44 +43,44 @@ export default function ServiceDetailContent({
         <p className="mb-3 text-sm font-semibold tracking-wider text-dyota-orange uppercase">
           {service.categoryTitle}
         </p>
-        <h1 className="mb-6 text-3xl font-bold text-dyota-navy md:text-5xl">
+        <h1 className="mb-4 text-2xl font-bold break-words text-dyota-navy sm:mb-6 sm:text-3xl md:text-5xl">
           {service.title}
         </h1>
-        <p className="mb-10 text-lg leading-relaxed text-foreground/80">
+        <p className="mb-8 text-base leading-relaxed text-foreground/80 sm:mb-10 sm:text-lg">
           {service.description}
         </p>
 
-        <section className="mb-12" aria-labelledby="service-category-heading">
+        <section className="mb-10 sm:mb-12" aria-labelledby="service-category-heading">
           <h2
             id="service-category-heading"
-            className="mb-4 text-2xl font-bold text-dyota-navy"
+            className="mb-3 text-xl font-bold text-dyota-navy sm:mb-4 sm:text-2xl"
           >
             {service.categoryTitle}
           </h2>
-          <p className="text-base leading-relaxed text-foreground/75">
+          <p className="text-sm leading-relaxed text-foreground/75 sm:text-base">
             {service.categoryDescription}
           </p>
         </section>
 
         {related.length > 0 && (
-          <section className="mb-14" aria-labelledby="related-services-heading">
+          <section className="mb-10 sm:mb-14" aria-labelledby="related-services-heading">
             <h2
               id="related-services-heading"
-              className="mb-5 text-2xl font-bold text-dyota-navy"
+              className="mb-4 text-xl font-bold text-dyota-navy sm:mb-5 sm:text-2xl"
             >
               Related Services
             </h2>
-            <ul className="grid gap-4 sm:grid-cols-2">
+            <ul className="grid gap-3 sm:grid-cols-2 sm:gap-4">
               {related.map((item) => (
                 <li key={item.slug}>
                   <Link
                     href={`/services/${item.slug}`}
-                    className="block h-full rounded-xl border border-dyota-navy/10 bg-white/80 p-5 shadow-sm transition-colors hover:border-dyota-orange/40"
+                    className="block h-full rounded-xl border border-dyota-navy/10 bg-white/80 p-4 shadow-sm transition-colors hover:border-dyota-orange/40 sm:p-5"
                   >
-                    <h3 className="mb-2 text-base font-semibold text-dyota-navy">
+                    <h3 className="mb-2 text-sm font-semibold text-dyota-navy sm:text-base">
                       {item.title}
                     </h3>
-                    <p className="text-sm leading-relaxed text-foreground/70">
+                    <p className="text-xs leading-relaxed text-foreground/70 sm:text-sm">
                       {item.description}
                     </p>
                   </Link>
@@ -90,9 +90,9 @@ export default function ServiceDetailContent({
           </section>
         )}
 
-        <section className="rounded-2xl bg-dyota-navy px-6 py-8 text-white md:px-10">
-          <h2 className="mb-3 text-2xl font-bold">Request This Service</h2>
-          <p className="mb-6 max-w-2xl text-white/85">
+        <section className="rounded-2xl bg-dyota-navy px-5 py-6 text-white sm:px-6 sm:py-8 md:px-10">
+          <h2 className="mb-3 text-xl font-bold sm:text-2xl">Request This Service</h2>
+          <p className="mb-5 max-w-2xl text-sm text-white/85 sm:mb-6 sm:text-base">
             Speak with Dyota Engineered Solutions in Dubai about {service.title}.
             Call {contactInfo.phone} or send an enquiry online.
           </p>

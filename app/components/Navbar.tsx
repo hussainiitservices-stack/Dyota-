@@ -29,7 +29,7 @@ const servicesMenu = [
 function DropdownChevron({ open }: { open?: boolean }) {
   return (
     <svg
-      className={`h-3.5 w-3.5 transition-transform ${open ? "rotate-180" : ""}`}
+      className={`h-3.5 w-3.5 shrink-0 transition-transform ${open ? "rotate-180" : ""}`}
       viewBox="0 0 20 20"
       fill="currentColor"
       aria-hidden
@@ -66,6 +66,14 @@ export default function Navbar() {
     setOpenMobile(null);
   }, [pathname]);
 
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setMobileOpen(false);
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
@@ -77,12 +85,13 @@ export default function Navbar() {
   return (
     <header className="nav-header sticky top-0 z-50 w-full glass-nav">
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2.5 sm:px-6 sm:py-3 lg:px-8"
         aria-label="Main navigation"
       >
         <Link
           href="/"
-          className="flex items-center gap-2 transition-transform hover:scale-[1.02] active:scale-[0.98]"
+          className="flex min-w-0 items-center gap-2 transition-transform hover:scale-[1.02] active:scale-[0.98]"
+          onClick={closeMobile}
         >
           <Image
             src="/logo-des.png"
@@ -90,12 +99,12 @@ export default function Navbar() {
             title="Dyota Engineered Solutions — Home"
             width={200}
             height={80}
-            className="h-14 w-auto object-contain sm:h-16 md:h-[4.5rem]"
+            className="h-11 w-auto max-w-[160px] object-contain sm:h-14 sm:max-w-none md:h-16 lg:h-[4.5rem]"
             priority
           />
         </Link>
 
-        <ul className="hidden items-center gap-7 lg:gap-8 md:flex">
+        <ul className="hidden items-center gap-5 lg:gap-8 md:flex">
           {navLinks.map((link) => {
             if (link.href === "/solutions" || link.href === "/services") {
               const key = link.href === "/solutions" ? "solutions" : "services";
@@ -135,7 +144,7 @@ export default function Navbar() {
                         : "pointer-events-none invisible opacity-0"
                     }`}
                   >
-                    <div className="overflow-hidden rounded-2xl border border-white/60 bg-white/90 py-2 shadow-xl shadow-[#2c5f9e]/15 backdrop-blur-xl">
+                    <div className="overflow-hidden rounded-2xl border border-white/60 bg-white/95 py-2 shadow-xl shadow-[#2c5f9e]/15 backdrop-blur-xl">
                       {menu.map((item) => (
                         <Link
                           key={item.href}
@@ -176,30 +185,31 @@ export default function Navbar() {
 
         <Link
           href="/contact"
-          className="nav-cta hidden rounded-full glass-btn-orange px-6 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-105 active:scale-95 md:block"
+          className="nav-cta hidden rounded-full glass-btn-orange px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-105 active:scale-95 md:block lg:px-6"
         >
           Get In Touch
         </Link>
 
         <button
           type="button"
-          className="relative z-50 flex h-11 w-11 flex-col items-center justify-center gap-1.5 md:hidden"
+          className="relative z-50 flex h-11 w-11 shrink-0 flex-col items-center justify-center gap-1.5 rounded-lg border border-dyota-navy/10 bg-white/50 md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-expanded={mobileOpen}
-          aria-label="Toggle menu"
+          aria-controls="mobile-menu"
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
         >
           <span
-            className={`mobile-menu-bar block h-0.5 w-6 bg-dyota-navy transition-transform duration-300 ${
+            className={`mobile-menu-bar block h-0.5 w-5 bg-dyota-navy transition-transform duration-300 ${
               mobileOpen ? "translate-y-2 rotate-45" : ""
             }`}
           />
           <span
-            className={`mobile-menu-bar block h-0.5 w-6 bg-dyota-navy transition-opacity duration-300 ${
+            className={`mobile-menu-bar block h-0.5 w-5 bg-dyota-navy transition-opacity duration-300 ${
               mobileOpen ? "opacity-0" : "opacity-100"
             }`}
           />
           <span
-            className={`mobile-menu-bar block h-0.5 w-6 bg-dyota-navy transition-transform duration-300 ${
+            className={`mobile-menu-bar block h-0.5 w-5 bg-dyota-navy transition-transform duration-300 ${
               mobileOpen ? "-translate-y-2 -rotate-45" : ""
             }`}
           />
@@ -207,12 +217,13 @@ export default function Navbar() {
       </nav>
 
       <div
-        className={`mobile-nav fixed inset-0 z-40 overflow-y-auto bg-white/95 backdrop-blur-xl md:hidden ${
+        id="mobile-menu"
+        className={`mobile-nav absolute inset-x-0 top-full z-40 max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-b border-white/50 bg-white/98 shadow-lg backdrop-blur-xl md:hidden ${
           mobileOpen ? "mobile-nav-open" : ""
         }`}
         aria-hidden={!mobileOpen}
       >
-        <div className="flex min-h-full flex-col items-stretch justify-center gap-2 px-8 py-28">
+        <div className="flex flex-col gap-1 px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-6">
           {navLinks.map((link) => {
             if (link.href === "/solutions" || link.href === "/services") {
               const key = link.href === "/solutions" ? "solutions" : "services";
@@ -223,7 +234,7 @@ export default function Navbar() {
                 <div key={link.href} className="mobile-nav-link w-full">
                   <button
                     type="button"
-                    className={`flex w-full items-center justify-between py-3 text-left text-2xl font-semibold tracking-wider uppercase ${
+                    className={`flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-base font-semibold tracking-wide uppercase ${
                       isActive(link.href) ? "text-dyota-orange" : "text-dyota-navy"
                     }`}
                     aria-expanded={open}
@@ -237,12 +248,12 @@ export default function Navbar() {
                     <DropdownChevron open={open} />
                   </button>
                   {open && (
-                    <div className="mb-2 ml-2 space-y-1 border-l-2 border-dyota-orange/30 pl-4">
+                    <div className="mb-2 ml-3 space-y-0.5 border-l-2 border-dyota-orange/30 pl-3">
                       {menu.map((item) => (
                         <Link
                           key={item.href}
                           href={item.href}
-                          className="block py-2 text-base font-medium text-dyota-navy/80"
+                          className="block rounded-lg px-2 py-2.5 text-sm font-medium text-dyota-navy/80"
                           onClick={closeMobile}
                         >
                           {item.label}
@@ -258,7 +269,7 @@ export default function Navbar() {
               <div key={link.href} className="mobile-nav-link">
                 <Link
                   href={link.href}
-                  className={`block py-3 text-2xl font-semibold tracking-wider uppercase ${
+                  className={`block rounded-xl px-3 py-3 text-base font-semibold tracking-wide uppercase ${
                     isActive(link.href) ? "text-dyota-orange" : "text-dyota-navy"
                   }`}
                   onClick={closeMobile}
@@ -270,7 +281,7 @@ export default function Navbar() {
           })}
           <Link
             href="/contact"
-            className="mt-6 self-center rounded-full bg-dyota-orange px-8 py-3 text-lg font-semibold text-white"
+            className="mt-3 inline-flex items-center justify-center rounded-full bg-dyota-orange px-6 py-3 text-sm font-semibold text-white"
             onClick={closeMobile}
           >
             Get In Touch

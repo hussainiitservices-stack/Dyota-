@@ -30,22 +30,22 @@ export default function Services({ isStandalone = false }: { isStandalone?: bool
     <section
       id="services"
       aria-labelledby="services-heading"
-      className={`relative scroll-mt-24 overflow-hidden bg-gradient-to-b from-white/50 to-[#edf7ff]/40 px-6 lg:px-8 ${
-        isStandalone ? "pt-16 pb-24" : "py-24"
+      className={`relative scroll-mt-24 overflow-hidden bg-gradient-to-b from-white/50 to-[#edf7ff]/40 px-4 sm:px-6 lg:px-8 ${
+        isStandalone ? "pt-12 pb-16 sm:pt-16 sm:pb-24" : "py-16 sm:py-24"
       }`}
     >
       <div className="relative mx-auto max-w-7xl">
-        <ScrollReveal className="mb-14 text-center">
+        <ScrollReveal className="mb-10 text-center sm:mb-14">
           <span className="mb-4 inline-block rounded-full bg-dyota-orange/10 px-4 py-1.5 text-sm font-semibold tracking-wider text-dyota-orange uppercase">
             Services
           </span>
           <HeadingTag
             id="services-heading"
-            className="mb-4 text-3xl font-bold text-dyota-navy md:text-5xl"
+            className="mb-4 text-2xl font-bold text-dyota-navy sm:text-3xl md:text-5xl"
           >
             {servicesContent.title}
           </HeadingTag>
-          <p className="mx-auto max-w-3xl text-lg font-normal text-foreground/70">
+          <p className="mx-auto max-w-3xl text-base font-normal text-foreground/70 sm:text-lg">
             {isStandalone
               ? servicesContent.subtitle
               : "Thermal Testing, Engineering Studies, Electrical Audit, Energy Audit and Power Quality analysis for industrial networks."}
@@ -53,23 +53,23 @@ export default function Services({ isStandalone = false }: { isStandalone?: bool
           <div className="section-divider mx-auto mt-8 w-24" />
         </ScrollReveal>
 
-        <div className="space-y-16">
+        <div className="space-y-10 sm:space-y-16">
           {categories.map((category, index) => (
             <ScrollReveal key={category.id} delay={index * 0.1}>
               <div
                 id={isStandalone ? category.id : undefined}
                 className="scroll-mt-28"
               >
-                <CategoryTag className="mb-3 text-2xl font-bold text-dyota-navy md:text-3xl">
+                <CategoryTag className="mb-3 text-xl font-bold text-dyota-navy sm:text-2xl md:text-3xl">
                   {category.title}
                 </CategoryTag>
                 {"description" in category && category.description && (
-                  <p className="mb-6 max-w-4xl text-base leading-relaxed text-foreground/75">
+                  <p className="mb-5 max-w-4xl text-sm leading-relaxed text-foreground/75 sm:mb-6 sm:text-base">
                     {category.description}
                   </p>
                 )}
                 <StaggerContainer
-                  className="grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3"
+                  className="grid items-stretch gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3"
                   stagger={0.05}
                 >
                   {category.items.map((item, itemIndex) => (
@@ -103,15 +103,15 @@ export default function Services({ isStandalone = false }: { isStandalone?: bool
 
         {isStandalone && (
           <motion.div
-            className="mt-16 rounded-2xl border border-white/60 bg-gradient-to-b from-[#80d8ff]/30 via-[#edf7ff]/70 to-white/80 p-8 shadow-lg shadow-[#2c5f9e]/10 backdrop-blur-md md:p-10"
+            className="mt-12 rounded-2xl border border-white/60 bg-gradient-to-b from-[#80d8ff]/30 via-[#edf7ff]/70 to-white/80 p-5 shadow-lg shadow-[#2c5f9e]/10 backdrop-blur-md sm:mt-16 sm:p-8 md:p-10"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="mb-8 text-center text-xl font-bold text-dyota-navy">
+            <h2 className="mb-6 text-center text-lg font-bold text-dyota-navy sm:mb-8 sm:text-xl">
               Benefits To You
             </h2>
-            <div className="grid grid-cols-2 gap-6 md:grid-cols-5">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-5">
               {clientBenefits.map((benefit, i) => (
                 <motion.div
                   key={benefit.title}

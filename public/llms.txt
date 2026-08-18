@@ -57,4 +57,3 @@ Tagline: Designing Today, Powering Tomorrow.
 
 - [Sitemap](https://www.dyotaes.com/sitemap.xml)
 - [Robots](https://www.dyotaes.com/robots.txt)
-- [Web App Manifest](https://www.dyotaes.com/manifest.webmanifest)

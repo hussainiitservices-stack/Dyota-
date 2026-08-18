@@ -67,20 +67,20 @@ export default function Footer() {
   return (
     <footer className="relative border-t border-white/40 bg-gradient-to-b from-white/70 via-[#edf7ff]/80 to-[#80d8ff]/30 text-dyota-navy">
       {/* Tagline bar */}
-      <div className="border-b border-white/50 bg-white/40 px-6 py-5 backdrop-blur-sm lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
-          <p className="text-sm font-semibold text-dyota-orange">
+      <div className="border-b border-white/50 bg-white/40 px-4 py-4 backdrop-blur-sm sm:px-6 sm:py-5 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 text-center sm:flex-row sm:gap-3 sm:text-left">
+          <p className="text-xs font-semibold text-dyota-orange sm:text-sm">
             {brand.footerLeft}
           </p>
-          <p className="text-sm font-semibold text-dyota-navy/75">
+          <p className="text-xs font-semibold text-dyota-navy/75 sm:text-sm">
             {brand.footerRight}
           </p>
         </div>
       </div>
 
       {/* Main footer body */}
-      <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-16">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-16">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
+        <div className="grid gap-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 lg:gap-16">
           {/* Brand column */}
           <motion.div
             className="sm:col-span-2 lg:col-span-1"
@@ -206,11 +206,11 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <p className="text-sm text-dyota-navy/50">
+          <p className="px-2 text-xs text-dyota-navy/50 sm:text-sm">
             © {new Date().getFullYear()} Dyota Engineered Solutions. All rights
             reserved.
           </p>
-          <p className="mt-2 text-sm text-dyota-navy/50">
+          <p className="mt-2 px-2 text-xs leading-relaxed text-dyota-navy/50 sm:text-sm">
             This website is designed and developed by{" "}
             <a
               href="https://thedigitalmagnet.com/"
