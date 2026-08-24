@@ -7,12 +7,54 @@ import { contactInfo } from "../lib/content";
 
 export default function Contact({ isStandalone = false }: { isStandalone?: boolean }) {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [focused, setFocused] = useState<string | null>(null);
   const HeadingTag = isStandalone ? "h1" : "h2";
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
+    setError(null);
+    setSubmitted(false);
+    setSending(true);
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: String(data.get("firstName") ?? ""),
+          lastName: String(data.get("lastName") ?? ""),
+          company: String(data.get("company") ?? ""),
+          email: String(data.get("email") ?? ""),
+          message: String(data.get("message") ?? ""),
+          website: String(data.get("website") ?? ""),
+        }),
+      });
+
+      const result = (await response.json()) as { ok?: boolean; error?: string };
+
+      if (!response.ok || !result.ok) {
+        throw new Error(
+          result.error ||
+            `Unable to send your enquiry. Please email ${contactInfo.email} directly.`,
+        );
+      }
+
+      setSubmitted(true);
+      form.reset();
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : `Unable to send your enquiry. Please email ${contactInfo.email} directly.`,
+      );
+    } finally {
+      setSending(false);
+    }
   }
 
   const fields = [
@@ -31,7 +73,6 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
         isStandalone ? "pt-12 pb-16 sm:pt-16 sm:pb-24" : "py-16 sm:py-24"
       }`}
     >
-      {/* Animated background */}
       <div className="pointer-events-none absolute inset-0">
         {[...Array(6)].map((_, i) => (
           <motion.div
@@ -51,9 +92,7 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
 
       <div className="relative mx-auto max-w-7xl">
         <ScrollReveal className="mb-10 text-center sm:mb-16">
-          <motion.span
-            className="mb-4 inline-block rounded-full bg-dyota-navy/10 px-4 py-1.5 text-sm font-semibold tracking-wider text-dyota-orange uppercase"
-          >
+          <motion.span className="mb-4 inline-block rounded-full bg-dyota-navy/10 px-4 py-1.5 text-sm font-semibold tracking-wider text-dyota-orange uppercase">
             Contact
           </motion.span>
           <HeadingTag
@@ -66,7 +105,6 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
         </ScrollReveal>
 
         <div className="grid gap-8 sm:gap-12 lg:grid-cols-2">
-          {/* Contact info */}
           <ScrollReveal direction="left">
             <div className="space-y-8">
               <h3 className="text-xl font-bold text-dyota-navy">Contact Information</h3>
@@ -174,7 +212,6 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
             </div>
           </ScrollReveal>
 
-          {/* Contact form */}
           <ScrollReveal direction="right" delay={0.2}>
             <motion.form
               onSubmit={handleSubmit}
@@ -186,6 +223,15 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
               <h3 className="mb-6 text-2xl font-bold text-dyota-navy">
                 Write To Us
               </h3>
+
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden
+                className="absolute left-[-9999px] h-0 w-0 opacity-0"
+              />
 
               <div className="grid gap-5 sm:grid-cols-2">
                 {fields.map((field) => (
@@ -206,7 +252,8 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
                           name={field.name}
                           rows={4}
                           required={field.name === "email" || field.name === "message"}
-                          className="w-full rounded-xl border-2 border-dyota-navy/10 bg-dyota-navy/5 px-4 py-3 text-foreground outline-none transition-all focus:border-dyota-orange focus:bg-white"
+                          disabled={sending}
+                          className="w-full rounded-xl border-2 border-dyota-navy/10 bg-dyota-navy/5 px-4 py-3 text-foreground outline-none transition-all focus:border-dyota-orange focus:bg-white disabled:opacity-60"
                           onFocus={() => setFocused(field.name)}
                           onBlur={() => setFocused(null)}
                         />
@@ -219,7 +266,8 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
                             field.name === "email" ||
                             field.name === "firstName"
                           }
-                          className="w-full rounded-xl border-2 border-dyota-navy/10 bg-dyota-navy/5 px-4 py-3 text-foreground outline-none transition-all focus:border-dyota-orange focus:bg-white"
+                          disabled={sending}
+                          className="w-full rounded-xl border-2 border-dyota-navy/10 bg-dyota-navy/5 px-4 py-3 text-foreground outline-none transition-all focus:border-dyota-orange focus:bg-white disabled:opacity-60"
                           onFocus={() => setFocused(field.name)}
                           onBlur={() => setFocused(null)}
                         />
@@ -242,15 +290,20 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
 
               <motion.button
                 type="submit"
-                className="mt-6 w-full rounded-xl bg-dyota-orange py-4 text-base font-semibold text-white shadow-lg shadow-dyota-orange/30"
-                whileHover={{
-                  scale: 1.02,
-                  backgroundColor: "#FF7A33",
-                  boxShadow: "0 10px 30px rgba(247,148,29,0.4)",
-                }}
-                whileTap={{ scale: 0.98 }}
+                disabled={sending}
+                className="mt-6 w-full rounded-xl bg-dyota-orange py-4 text-base font-semibold text-white shadow-lg shadow-dyota-orange/30 disabled:cursor-not-allowed disabled:opacity-70"
+                whileHover={
+                  sending
+                    ? undefined
+                    : {
+                        scale: 1.02,
+                        backgroundColor: "#FF7A33",
+                        boxShadow: "0 10px 30px rgba(247,148,29,0.4)",
+                      }
+                }
+                whileTap={sending ? undefined : { scale: 0.98 }}
               >
-                Send Message
+                {sending ? "Sending..." : "Send Message"}
               </motion.button>
 
               <AnimatePresence>
@@ -263,6 +316,19 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
                   >
                     Thank you for your enquiry! Our team will contact you
                     shortly.
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <AnimatePresence>
+                {error && (
+                  <motion.div
+                    className="mt-4 rounded-xl bg-red-50 p-4 text-center text-sm text-red-700"
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    {error}
                   </motion.div>
                 )}
               </AnimatePresence>

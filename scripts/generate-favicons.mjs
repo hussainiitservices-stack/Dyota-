@@ -1,34 +1,35 @@
-import { mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import pngToIco from "png-to-ico";
 import sharp from "sharp";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const source = path.join(root, "public", "favicon-source.png");
 const publicDir = path.join(root, "public");
 const appDir = path.join(root, "app");
 
+const sourceCandidates = [
+  path.join(publicDir, "logo-des.png"),
+  path.join(publicDir, "logo.png"),
+  path.join(publicDir, "favicon-source.png"),
+];
+
+const source = sourceCandidates.find((candidate) => existsSync(candidate));
+
+if (!source) {
+  console.error("No logo source found. Expected public/logo-des.png");
+  process.exit(1);
+}
+
+console.log(`Generating favicons from: ${path.relative(root, source)}`);
+
 async function createIcon(size) {
-  const logoSize = Math.round(size * 0.82);
-
-  const logo = await sharp(source)
-    .resize(logoSize, logoSize, {
+  // Keep the full wide logo readable inside a square favicon on white.
+  return sharp(source)
+    .resize(size, size, {
       fit: "contain",
-      background: { r: 255, g: 255, b: 255, alpha: 0 },
+      background: { r: 255, g: 255, b: 255, alpha: 1 },
     })
-    .png()
-    .toBuffer();
-
-  return sharp({
-    create: {
-      width: size,
-      height: size,
-      channels: 4,
-      background: "#ffffff",
-    },
-  })
-    .composite([{ input: logo, gravity: "center" }])
     .png()
     .toBuffer();
 }
@@ -46,15 +47,13 @@ for (const size of sizes) {
   pngPaths.push(filepath);
 }
 
-const favicon512 = await createIcon(512);
-writeFileSync(path.join(publicDir, "favicon.png"), favicon512);
+writeFileSync(path.join(publicDir, "favicon.png"), await createIcon(512));
 writeFileSync(path.join(publicDir, "apple-touch-icon.png"), await createIcon(180));
 
 const icoInputs = pngPaths.filter((p) => /favicon-(16|32|48)x/.test(p));
-const icoPath = path.join(publicDir, "favicon.ico");
 const icoBuffer = await pngToIco(icoInputs);
 
-writeFileSync(icoPath, icoBuffer);
+writeFileSync(path.join(publicDir, "favicon.ico"), icoBuffer);
 writeFileSync(path.join(appDir, "favicon.ico"), icoBuffer);
 
-console.log("Favicons generated successfully.");
+console.log("Favicons generated successfully from the main logo.");
