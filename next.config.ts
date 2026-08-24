@@ -35,6 +35,10 @@ const legacyServiceRedirects = [
     source: "/services/energy-audit-uae",
     destination: "/services/energy-audit",
   },
+  {
+    source: "/services/earth-leakage-audit-uae",
+    destination: "/services/earth-leakage-audit",
+  },
 ] as const;
 
 const nextConfig: NextConfig = {
