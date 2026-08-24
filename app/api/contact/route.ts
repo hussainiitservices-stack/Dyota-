@@ -9,18 +9,22 @@ type ContactPayload = {
   company?: string;
   email?: string;
   message?: string;
-  website?: string; // honeypot
+  website?: string;
 };
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+/**
+ * Kept as a fallback endpoint. The contact UI posts directly to FormSubmit
+ * from the browser (more reliable Origin/activation). This route still works
+ * for tooling and can later switch to Resend if needed.
+ */
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as ContactPayload;
 
-    // Honeypot — bots fill hidden fields; silently succeed.
     if (body.website?.trim()) {
       return NextResponse.json({ ok: true });
     }
@@ -53,111 +57,94 @@ export async function POST(request: Request) {
     }
 
     const fullName = [firstName, lastName].filter(Boolean).join(" ");
-    const subject = `New website enquiry from ${fullName}`;
-    const text = [
-      "New enquiry from the Dyota ES website contact form.",
-      "",
-      `Name: ${fullName}`,
-      `Email: ${email}`,
-      `Company: ${company || "—"}`,
-      "",
-      "Message:",
-      message,
-    ].join("\n");
+    const origin =
+      request.headers.get("origin") ||
+      request.headers.get("referer") ||
+      "https://www.dyotaes.com";
 
-    const delivered = await deliverEnquiry({
-      to: contactInfo.email,
-      replyTo: email,
-      subject,
-      text,
-      fullName,
-      email,
-      company,
-      message,
-    });
+    const response = await fetch(
+      `https://formsubmit.co/ajax/${encodeURIComponent(contactInfo.email)}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Origin: origin.startsWith("http")
+            ? new URL(origin).origin
+            : "https://www.dyotaes.com",
+          Referer: "https://www.dyotaes.com/contact",
+        },
+        body: JSON.stringify({
+          name: fullName,
+          email,
+          _replyto: email,
+          company: company || "—",
+          message,
+          _subject: `New website enquiry from ${fullName}`,
+          _template: "table",
+          _captcha: "false",
+        }),
+      },
+    );
 
-    if (!delivered.ok) {
+    const raw = await response.text();
+    let parsed: { success?: string | boolean; message?: string } = {};
+    try {
+      parsed = JSON.parse(raw) as typeof parsed;
+    } catch {
+      console.error("FormSubmit non-JSON:", raw);
+      return NextResponse.json(
+        {
+          ok: false,
+          error: `Unable to send your enquiry. Please email ${contactInfo.email} directly.`,
+        },
+        { status: 502 },
+      );
+    }
+
+    const success = parsed.success;
+    if (success === false || success === "false") {
+      const msg = parsed.message || "";
+      if (/activat/i.test(msg)) {
+        return NextResponse.json(
+          {
+            ok: false,
+            needsActivation: true,
+            error: `Please check ${contactInfo.email} for a FormSubmit activation email and click “Activate Form”.`,
+          },
+          { status: 409 },
+        );
+      }
       return NextResponse.json(
         {
           ok: false,
           error:
-            delivered.error ||
-            "Unable to send your enquiry right now. Please email info@dyotaes.com directly.",
+            msg ||
+            `Unable to send your enquiry. Please email ${contactInfo.email} directly.`,
+        },
+        { status: 502 },
+      );
+    }
+
+    if (!response.ok) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: `Unable to send your enquiry. Please email ${contactInfo.email} directly.`,
         },
         { status: 502 },
       );
     }
 
     return NextResponse.json({ ok: true });
-  } catch {
+  } catch (error) {
+    console.error("Contact API error:", error);
     return NextResponse.json(
       {
         ok: false,
-        error:
-          "Unable to send your enquiry right now. Please email info@dyotaes.com directly.",
+        error: `Unable to send your enquiry. Please email ${contactInfo.email} directly.`,
       },
       { status: 500 },
     );
   }
-}
-
-async function deliverEnquiry(input: {
-  to: string;
-  replyTo: string;
-  subject: string;
-  text: string;
-  fullName: string;
-  email: string;
-  company: string;
-  message: string;
-}): Promise<{ ok: boolean; error?: string }> {
-  // No Resend / SMTP key required.
-  // FormSubmit delivers enquiries to info@dyotaes.com.
-  // First submission may send an activation email that must be confirmed once.
-  const response = await fetch(
-    `https://formsubmit.co/ajax/${encodeURIComponent(input.to)}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        name: input.fullName,
-        email: input.email,
-        _replyto: input.replyTo,
-        company: input.company || "—",
-        message: input.message,
-        _subject: input.subject,
-        _template: "table",
-        _captcha: "false",
-      }),
-    },
-  );
-
-  const raw = await response.text();
-  let parsed: { success?: string | boolean; message?: string } = {};
-  try {
-    parsed = JSON.parse(raw) as typeof parsed;
-  } catch {
-    // non-JSON responses are treated as failures below
-  }
-
-  if (!response.ok) {
-    console.error("FormSubmit error:", raw);
-    return { ok: false, error: "Email delivery failed." };
-  }
-
-  // FormSubmit returns success even while awaiting activation confirmation.
-  if (parsed.success === false) {
-    console.error("FormSubmit rejected:", raw);
-    return {
-      ok: false,
-      error:
-        parsed.message ||
-        "Email delivery failed. Please try again or email info@dyotaes.com.",
-    };
-  }
-
-  return { ok: true };
 }

@@ -5,41 +5,100 @@ import { useState, type FormEvent } from "react";
 import ScrollReveal from "./ScrollReveal";
 import { contactInfo } from "../lib/content";
 
+type SubmitResult = {
+  success?: string | boolean;
+  message?: string;
+};
+
 export default function Contact({ isStandalone = false }: { isStandalone?: boolean }) {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [info, setInfo] = useState<string | null>(null);
   const [focused, setFocused] = useState<string | null>(null);
   const HeadingTag = isStandalone ? "h1" : "h2";
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
+    setInfo(null);
     setSubmitted(false);
     setSending(true);
 
     const form = e.currentTarget;
     const data = new FormData(form);
 
+    // Honeypot — bots fill this; pretend success.
+    if (String(data.get("website") ?? "").trim()) {
+      setSubmitted(true);
+      form.reset();
+      setSending(false);
+      return;
+    }
+
+    const firstName = String(data.get("firstName") ?? "").trim();
+    const lastName = String(data.get("lastName") ?? "").trim();
+    const company = String(data.get("company") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    const message = String(data.get("message") ?? "").trim();
+    const fullName = [firstName, lastName].filter(Boolean).join(" ");
+
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          firstName: String(data.get("firstName") ?? ""),
-          lastName: String(data.get("lastName") ?? ""),
-          company: String(data.get("company") ?? ""),
-          email: String(data.get("email") ?? ""),
-          message: String(data.get("message") ?? ""),
-          website: String(data.get("website") ?? ""),
-        }),
-      });
+      // Browser → FormSubmit (no API key). Needs Origin from the live site.
+      const response = await fetch(
+        `https://formsubmit.co/ajax/${encodeURIComponent(contactInfo.email)}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: fullName,
+            email,
+            _replyto: email,
+            company: company || "—",
+            message,
+            _subject: `New website enquiry from ${fullName}`,
+            _template: "table",
+            _captcha: "false",
+          }),
+        },
+      );
 
-      const result = (await response.json()) as { ok?: boolean; error?: string };
-
-      if (!response.ok || !result.ok) {
+      const raw = await response.text();
+      let result: SubmitResult = {};
+      try {
+        result = JSON.parse(raw) as SubmitResult;
+      } catch {
         throw new Error(
-          result.error ||
+          `Unable to send your enquiry. Please email ${contactInfo.email} directly.`,
+        );
+      }
+
+      const successValue = result.success;
+      const isSuccess =
+        successValue === true ||
+        successValue === "true" ||
+        String(result.message ?? "")
+          .toLowerCase()
+          .includes("sent");
+
+      if (
+        successValue === false ||
+        successValue === "false" ||
+        !response.ok ||
+        !isSuccess
+      ) {
+        const msg = result.message || "";
+        if (/activat/i.test(msg)) {
+          setInfo(
+            `Please check ${contactInfo.email} for a FormSubmit activation email and click “Activate Form”. After that, enquiries will arrive normally.`,
+          );
+          return;
+        }
+        throw new Error(
+          msg ||
             `Unable to send your enquiry. Please email ${contactInfo.email} directly.`,
         );
       }
@@ -316,6 +375,19 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
                   >
                     Thank you for your enquiry! Our team will contact you
                     shortly.
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <AnimatePresence>
+                {info && (
+                  <motion.div
+                    className="mt-4 rounded-xl bg-amber-50 p-4 text-center text-sm text-amber-900"
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    {info}
                   </motion.div>
                 )}
               </AnimatePresence>
