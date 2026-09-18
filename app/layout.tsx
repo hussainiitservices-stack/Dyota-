@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
+import Script from "next/script";
 import { seoKeywords } from "./lib/content";
 import {
   DEFAULT_DESCRIPTION,
@@ -15,6 +16,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FloatingActions from "./components/FloatingActions";
 import "./globals.css";
+
+const GA_MEASUREMENT_ID = "G-G94ZWCV2WL";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -112,6 +115,18 @@ export default function RootLayout({
       className={`${geistSans.variable} h-full scroll-smooth antialiased`}
     >
       <body className="min-h-full font-sans">
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         <JsonLd data={globalSchemaGraph()} />
         <a
           href="#main-content"
